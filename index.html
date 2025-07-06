@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShadowFetch - Top Linux Distros</title>
   <style>
-    /* existing styles here (trimmed for brevity) */
     body {
       background: linear-gradient(135deg, #0b0b0f 0%, #1a1a2e 100%);
       color: #f0f0f0;
@@ -150,7 +149,66 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(-90deg); }
     }
+    .distros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .distro-card {
+      background: #1a1a2e;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .distro-link {
+      color: #00ffe7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .distro-description {
+      margin: 0.5rem 0 0;
+      font-size: 0.9rem;
+      color: #f0f0f0;
+    }
+    .category-badge {
+      display: inline-block;
+      background: #66ccff;
+      color: #0b0b0f;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-button');
+      const cards = document.querySelectorAll('.distro-card');
+      const searchInput = document.getElementById('searchInput');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          cards.forEach(card => {
+            const badge = card.querySelector('.category-badge');
+            if (!category || (badge && badge.textContent === category)) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      searchInput.addEventListener('input', () => {
+        const value = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = text.includes(value) ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="social-links">
@@ -182,53 +240,82 @@
   </section>
 
   <main class="container">
-  <section class="linux-info">
-    <h2>The World of Linux</h2>
-    <div class="info-card">
-      <h3>🐧 What is Linux?</h3>
-      <p>Linux is a free, open-source operating system kernel originally created by Linus Torvalds in 1991. It powers smartphones, servers, supercomputers, and more.</p>
-    </div>
-    <div class="info-card">
-      <h3>📚 A Brief History</h3>
-      <div class="timeline">
-        <div class="timeline-item"><span class="year">1991</span><p>Linux announced by Linus Torvalds.</p></div>
-        <div class="timeline-item"><span class="year">1993</span><p>Slackware, Debian, and Red Hat emerge.</p></div>
-        <div class="timeline-item"><span class="year">2007</span><p>Android brings Linux to phones.</p></div>
-        <div class="timeline-item"><span class="year">Today</span><p>Linux dominates servers, mobile, and embedded systems.</p></div>
+    <section class="linux-info">
+      <h2>The World of Linux</h2>
+      <div class="info-card">
+        <h3>🐧 What is Linux?</h3>
+        <p>Linux is a free, open-source operating system kernel originally created by Linus Torvalds in 1991. It powers smartphones, servers, supercomputers, and more.</p>
       </div>
-    </div>
-  </section>
+      <div class="info-card">
+        <h3>📚 A Brief History</h3>
+        <div class="timeline">
+          <div class="timeline-item"><span class="year">1991</span><p>Linux announced by Linus Torvalds.</p></div>
+          <div class="timeline-item"><span class="year">1993</span><p>Slackware, Debian, and Red Hat emerge.</p></div>
+          <div class="timeline-item"><span class="year">2007</span><p>Android brings Linux to phones.</p></div>
+          <div class="timeline-item"><span class="year">Today</span><p>Linux dominates servers, mobile, and embedded systems.</p></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="distros-section">
-    <h2>Popular Linux Distributions</h2>
-    <ul class="distros-grid">
-      <li class="distro-card"><a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a><p class="distro-description">Beginner-friendly and highly popular.</p></li>
-      <li class="distro-card"><a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a><p class="distro-description">Rock-solid and stable for servers and desktops.</p></li>
-      <li class="distro-card"><a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a><p class="distro-description">Minimalist and customizable with a rolling release.</p></li>
-      <li class="distro-card"><a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a><p class="distro-description">Cutting-edge and backed by Red Hat.</p></li>
-      <li class="distro-card"><a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a><p class="distro-description">Easy to use with a Windows-like interface.</p></li>
-      <li class="distro-card"><a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a><p class="distro-description">User-friendly Arch-based distro.</p></li>
-      <li class="distro-card"><a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a><p class="distro-description">Optimized for productivity and creators.</p></li>
-      <li class="distro-card"><a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a><p class="distro-description">Beautiful and modern Ubuntu-based distro.</p></li>
-      <li class="distro-card"><a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a><p class="distro-description">Privacy-focused and elegantly designed.</p></li>
-      <li class="distro-card"><a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a><p class="distro-description">Focused on penetration testing and security.</p></li>
-      <li class="distro-card"><a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a><p class="distro-description">Lightweight, Debian-based, and snappy.</p></li>
-      <li class="distro-card"><a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a><p class="distro-description">Enterprise-ready Red Hat replacement.</p></li>
-      <li class="distro-card"><a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a><p class="distro-description">Enterprise-grade distro from CentOS's founder.</p></li>
-      <li class="distro-card"><a href="https://peppermintos.com" target="_blank" class="distro-link">Peppermint OS</a><p class="distro-description">Fast and cloud-focused desktop distro.</p></li>
-      <li class="distro-card"><a href="https://www.parrotsec.org" target="_blank" class="distro-link">Parrot OS</a><p class="distro-description">Security, privacy, and development focused.</p></li>
-      <li class="distro-card"><a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a><p class="distro-description">Independent and minimalist with runit init.</p></li>
-      <li class="distro-card"><a href="https://slackware.org" target="_blank" class="distro-link">Slackware</a><p class="distro-description">Classic and Unix-like since 1993.</p></li>
-      <li class="distro-card"><a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a><p class="distro-description">Gaming-focused with stunning visuals.</p></li>
-      <li class="distro-card"><a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a><p class="distro-description">Friendly Arch-based distro with active community.</p></li>
-      <li class="distro-card"><a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a><p class="distro-description">Powerful tools and enterprise-grade support.</p></li>
-    </ul>
-  </section>
-</main>
+    <section class="distros-section">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+        <input id="searchInput" type="text" placeholder="Search distros..." style="padding: 0.5rem 1rem; border-radius: 5px; border: none; min-width: 200px;">
+        <button class="filter-button" data-category="" style="padding: 0.5rem 1rem; background: #00ffe7; border: none; border-radius: 5px; cursor: pointer;">All</button>
+        <button class="filter-button" data-category="Beginner" style="padding: 0.5rem 1rem; background: #66ccff; border: none; border-radius: 5px; cursor: pointer;">Beginner</button>
+        <button class="filter-button" data-category="Gaming" style="padding: 0.5rem 1rem; background: #66ccff; border: none; border-radius: 5px; cursor: pointer;">Gaming</button>
+        <button class="filter-button" data-category="Security" style="padding: 0.5rem 1rem; background: #66ccff; border: none; border-radius: 5px; cursor: pointer;">Security</button>
+        <button class="filter-button" data-category="Enterprise" style="padding: 0.5rem 1rem; background: #66ccff; border: none; border-radius: 5px; cursor: pointer;">Enterprise</button>
+        <button class="filter-button" data-category="Advanced" style="padding: 0.5rem 1rem; background: #66ccff; border: none; border-radius: 5px; cursor: pointer;">Advanced</button>
+      </div>
+      <h2>Popular Linux Distributions</h2>
+      <ul class="distros-grid">
+        <li class="distro-card"><a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a><p class="distro-description">Beginner-friendly, widely used, Debian-based. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a><p class="distro-description">Windows-like interface, Ubuntu-based. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a><p class="distro-description">Stable, versatile, vast package repository. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a><p class="distro-description">Cutting-edge, Red Hat-backed. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a><p class="distro-description">Productivity-focused, Ubuntu-based, NVIDIA support. <span class="category-badge">Gaming</span></p></li>
+        <li class="distro-card"><a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a><p class="distro-description">User-friendly, Arch-based, rolling release. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a><p class="distro-description">Minimalist, customizable, rolling release. <span class="category-badge">Advanced</span></p></li>
+        <li class="distro-card"><a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a><p class="distro-description">Flexible, YaST tool, enterprise-grade. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a><p class="distro-description">Windows-like, Ubuntu-based, beginner-friendly. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a><p class="distro-description">macOS-like, Ubuntu-based, privacy-focused. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a><p class="distro-description">Lightweight, Debian-based, user-friendly. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a><p class="distro-description">Security and penetration testing focused. <span class="category-badge">Security</span></p></li>
+        <li class="distro-card"><a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a><p class="distro-description">RHEL-compatible, enterprise-ready. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a><p class="distro-description">RHEL-compatible, enterprise-grade. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://peppermintos.com" target="_blank" class="distro-link">Peppermint OS</a><p class="distro-description">Fast, cloud-focused, Ubuntu-based. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.parrotsec.org" target="_blank" class="distro-link">Parrot OS</a><p class="distro-description">Security, privacy, and development focused. <span class="category-badge">Security</span></p></li>
+        <li class="distro-card"><a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a><p class="distro-description">Independent, minimalist, runit init. <span class="category-badge">Advanced</span></p></li>
+        <li class="distro-card"><a href="https://slackware.org" target="_blank" class="distro-link">Slackware</a><p class="distro-description">Classic, Unix-like, highly customizable. <span class="category-badge">Advanced</span></p></li>
+        <li class="distro-card"><a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a><p class="distro-description">Gaming-focused, Arch-based, visually stunning. <span class="category-badge">Gaming</span></p></li>
+        <li class="distro-card"><a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a><p class="distro-description">Arch-based, beginner-friendly, active community. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.centos.org" target="_blank" class="distro-link">CentOS Stream</a><p class="distro-description">RHEL upstream, enterprise-focused, rolling release. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux" target="_blank" class="distro-link">Red Hat Enterprise Linux</a><p class="distro-description">Commercial, enterprise-grade, long-term support. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://www.suse.com/products/server" target="_blank" class="distro-link">SUSE Linux Enterprise</a><p class="distro-description">Commercial, enterprise-focused, robust tools. <span class="category-badge">Enterprise</span></p></li>
+        <li class="distro-card"><a href="https://getnobara.com" target="_blank" class="distro-link">Nobara</a><p class="distro-description">Gaming and content creation, Fedora-based. <span class="category-badge">Gaming</span></p></li>
+        <li class="distro-card"><a href="https://www.deepin.org" target="_blank" class="distro-link">Deepin</a><p class="distro-description">Visually appealing, Debian-based, intuitive UI. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://gentoo.org" target="_blank" class="distro-link">Gentoo</a><p class="distro-description">Highly customizable, source-based, optimized. <span class="category-badge">Advanced</span></p></li>
+        <li class="distro-card"><a href="https://neon.kde.org" target="_blank" class="distro-link">KDE Neon</a><p class="distro-description">Latest KDE Plasma, Ubuntu-based. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.qubes-os.org" target="_blank" class="distro-link">Qubes OS</a><p class="distro-description">Security-focused, Xen-based virtualization. <span class="category-badge">Security</span></p></li>
+        <li class="distro-card"><a href="https://tails.net" target="_blank" class="distro-link">Tails</a><p class="distro-description">Privacy-focused, Debian-based, live system. <span class="category-badge">Security</span></p></li>
+        <li class="distro-card"><a href="https://www.knoppix.net" target="_blank" class="distro-link">Knoppix</a><p class="distro-description">Live CD, Debian-based, hardware detection. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://antixlinux.com" target="_blank" class="distro-link">antiX</a><p class="distro-description">Lightweight, Debian-based, older hardware. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://solus-project.com" target="_blank" class="distro-link">Solus</a><p class="distro-description">Independent, modern desktop, Budgie environment. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://linuxliteos.com" target="_blank" class="distro-link">Linux Lite</a><p class="distro-description">Lightweight, Ubuntu-based, Windows-like. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.pclinuxos.com" target="_blank" class="distro-link">PCLinuxOS</a><p class="distro-description">User-friendly, RPM-based, independent. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://lubuntu.me" target="_blank" class="distro-link">Lubuntu</a><p class="distro-description">Lightweight, Ubuntu-based, LXQt desktop. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://kubuntu.org" target="_blank" class="distro-link">Kubuntu</a><p class="distro-description">Ubuntu-based, KDE Plasma desktop. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://xubuntu.org" target="_blank" class="distro-link">Xubuntu</a><p class="distro-description">Ubuntu-based, Xfce desktop, lightweight. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://www.openmandriva.org" target="_blank" class="distro-link">OpenMandriva</a><p class="distro-description">User-friendly, RPM-based, KDE-focused. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://puppylinux.com" target="_blank" class="distro-link">Puppy Linux</a><p class="distro-description">Ultra-lightweight, runs in RAM, independent. <span class="category-badge">Beginner</span></p></li>
+        <li class="distro-card"><a href="https://asahilinux.org" target="_blank" class="distro-link">Fedora Asahi Remix</a><p class="distro-description">Fedora-based, optimized for Apple Silicon. <span class="category-badge">Advanced</span></p></li>
+      </ul>
+    </section>
+  </main>
 
   <footer style="text-align:center; padding: 2rem 0; color: #888;">
     <div class="container">
-      <p>&copy; 2024 ShadowFetch. Explore the world of Linux distributions.</p>
+      <p>© 2024 ShadowFetch. Explore the world of Linux distributions.</p>
     </div>
   </footer>
 </body>
