@@ -1,1 +1,374 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShadowFetch - Top Linux Distros</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #0b0b0f 0%, #1a1a2e 100%);
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 255, 231, 0.2);
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjU4IiBzdHJva2U9IiMwMGZmZTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSI2MCIgeT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMGZmZTciIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+U0Y8L3RleHQ+Cjwvc3ZnPgo=') no-repeat center;
+      background-size: contain;
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(0, 255, 231, 0.3);
+      animation: pulse 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #00ffe7, #0066cc, #00ffe7);
+      border-radius: 50%;
+      z-index: -1;
+      animation: rotate 4s linear infinite;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      color: #00ffe7;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0, 255, 231, 0.5);
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      color: #66ccff;
+      opacity: 0.9;
+    }
+    
+    .mascot-hint {
+      font-size: 0.9rem;
+      color: #66ccff;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+    
+    main {
+      padding: 3rem 0;
+    }
+    
+    .distros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .distro-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 231, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .distro-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 231, 0.05), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+    
+    .distro-card:hover::before {
+      opacity: 1;
+      transform: rotate(45deg) translateX(100%);
+    }
+    
+    .distro-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 255, 231, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 255, 231, 0.1);
+    }
+    
+    .distro-link {
+      color: #66ccff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .distro-link:hover {
+      color: #00ffe7;
+    }
+    
+    .distro-description {
+      color: #cccccc;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+    
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 255, 231, 0.2);
+      color: #00ffe7;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #888;
+      border-top: 1px solid rgba(0, 255, 231, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .distros-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+    }
+    
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #00ffe7, #66ccff);
+      transform-origin: left;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator"></div>
+  
+  <header>
+    <div class="container">
+      <div class="logo"></div>
+      <h1>ShadowFetch</h1>
+      <p class="subtitle">Your Ultimate Guide to Linux Distributions</p>
+      <div class="mascot-hint">🐕 Powered by our cyber-hound companion</div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="container">
+      <ul class="distros-grid">
+        <li class="distro-card">
+          <div class="popular-badge">Popular</div>
+          <div class="category-badge">Beginner</div>
+          <a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a>
+          <p class="distro-description">User-friendly Debian-based distribution perfect for beginners and professionals alike.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Stable</div>
+          <a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a>
+          <p class="distro-description">Rock-solid foundation for many other distributions, known for stability and reliability.</p>
+        </li>
+        <li class="distro-card">
+          <div class="popular-badge">Popular</div>
+          <div class="category-badge">Advanced</div>
+          <a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a>
+          <p class="distro-description">Minimalist, rolling-release distribution for users who want full control and customization.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Cutting Edge</div>
+          <a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a>
+          <p class="distro-description">Red Hat-sponsored distribution featuring the latest open source innovations.</p>
+        </li>
+        <li class="distro-card">
+          <div class="popular-badge">Popular</div>
+          <div class="category-badge">Beginner</div>
+          <a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a>
+          <p class="distro-description">Elegant and easy-to-use Ubuntu-based distribution with excellent out-of-the-box experience.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">User-Friendly</div>
+          <a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a>
+          <p class="distro-description">Arch-based distribution that makes the power of Arch accessible to everyone.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Gaming</div>
+          <a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a>
+          <p class="distro-description">System76's Ubuntu-based distribution optimized for creators and developers.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Arch-based</div>
+          <a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a>
+          <p class="distro-description">Lightweight Arch-based distribution that's perfect for Arch enthusiasts.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Enterprise</div>
+          <a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a>
+          <p class="distro-description">Professional-grade distribution with excellent system administration tools.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Elegant</div>
+          <a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a>
+          <p class="distro-description">Beautiful Ubuntu-based distribution designed for Windows and Mac users.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Beautiful</div>
+          <a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a>
+          <p class="distro-description">Thoughtfully designed distribution that respects your privacy and puts you in control.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Lightweight</div>
+          <a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a>
+          <p class="distro-description">Debian-based distribution combining elegant desktop with simple configuration.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Gaming</div>
+          <a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a>
+          <p class="distro-description">Arch-based distribution with beautiful themes and gaming optimizations.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Security</div>
+          <a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a>
+          <p class="distro-description">Debian-based distribution designed for penetration testing and digital forensics.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Enterprise</div>
+          <a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a>
+          <p class="distro-description">Community-driven RHEL clone providing enterprise-grade stability and support.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Enterprise</div>
+          <a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a>
+          <p class="distro-description">Enterprise-focused distribution built by the original CentOS founder.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Lightweight</div>
+          <a href="https://peppermintos.com" target="_blank" class="distro-link">Peppermint OS</a>
+          <p class="distro-description">Cloud-focused distribution that's fast, lightweight, and easy to use.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Security</div>
+          <a href="https://www.parrotsec.org" target="_blank" class="distro-link">Parrot OS</a>
+          <p class="distro-description">Debian-based distribution designed for security testing and privacy protection.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Minimalist</div>
+          <a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a>
+          <p class="distro-description">Independent distribution built from scratch with a focus on simplicity and performance.</p>
+        </li>
+        <li class="distro-card">
+          <div class="category-badge">Classic</div>
+          <a href="https://slackware.org" target="_blank" class="distro-link">Slackware</a>
+          <p class="distro-description">One of the oldest Linux distributions, known for its simplicity and Unix-like approach.</p>
+        </li>
+      </ul>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 ShadowFetch. Explore the world of Linux distributions.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Smooth scroll indicator
+    window.addEventListener('scroll', () => {
+      const indicator = document.querySelector('.scroll-indicator');
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      indicator.style.transform = `scaleX(${scrolled / 100})`;
+    });
+    
+    // Add loading animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.distro-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    });
+  </script>
+</body>
+</html>
