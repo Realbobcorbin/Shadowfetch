@@ -370,5 +370,20 @@
       });
     });
   </script>
+  <div style="font-family: monospace; font-weight: bold; font-size: 1.2em;">
+  Visitors so far: <span id="visitor-count">Loading...</span>
+</div>
+
+<script>
+  fetch('https://api.countapi.xyz/hit/shadowfetch.com/visitor_count')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('visitor-count').textContent = data.value;
+    })
+    .catch(() => {
+      document.getElementById('visitor-count').textContent = 'N/A';
+    });
+</script>
+
 </body>
 </html>
