@@ -4,9 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShadowFetch - Top Linux Distros</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* (same CSS styles as before, trimmed for brevity in this message)
-       Includes: body, header, container, distros-grid, etc. */
+    /* Add your styles here or link to external stylesheet */
+    body {
+      background: linear-gradient(135deg, #0b0b0f 0%, #1a1a2e 100%);
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     .social-links {
       position: absolute;
@@ -26,6 +39,39 @@
 
     .social-links a:hover {
       color: #66ccff;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
+      background: url('logo.svg') no-repeat center;
+      background-size: contain;
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(0, 255, 231, 0.3);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00ffe7;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #66ccff;
+    }
+
+    .mascot-hint {
+      font-size: 0.9rem;
+      color: #66ccff;
+      margin-top: 0.5rem;
+      font-style: italic;
     }
 
     .mascot-section {
@@ -158,7 +204,15 @@
     </div>
   </section>
 
-  <!-- Rest of your webpage content goes here -->
+  <main class="container">
+    <!-- Include your full existing distro content, grid, sections, etc. here -->
+    <p style="text-align:center; padding: 2rem; color: #ccc;">[Put your main website content here like distro grid, info cards, etc.]</p>
+  </main>
 
+  <footer style="text-align:center; padding: 2rem 0; color: #888;">
+    <div class="container">
+      <p>&copy; 2024 ShadowFetch. Explore the world of Linux distributions.</p>
+    </div>
+  </footer>
 </body>
 </html>
