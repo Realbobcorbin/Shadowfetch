@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShadowFetch - Top Linux Distros</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
-    /* Add your styles here or link to external stylesheet */
+    /* existing styles here (trimmed for brevity) */
     body {
       background: linear-gradient(135deg, #0b0b0f 0%, #1a1a2e 100%);
       color: #f0f0f0;
@@ -14,13 +13,11 @@
       margin: 0;
       padding: 0;
     }
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-
     .social-links {
       position: absolute;
       top: 1rem;
@@ -28,7 +25,6 @@
       display: flex;
       gap: 1rem;
     }
-
     .social-links a {
       color: #00ffe7;
       text-decoration: none;
@@ -36,16 +32,13 @@
       font-size: 0.9rem;
       transition: color 0.3s ease;
     }
-
     .social-links a:hover {
       color: #66ccff;
     }
-
     header {
       text-align: center;
       padding: 3rem 0;
     }
-
     .logo {
       width: 120px;
       height: 120px;
@@ -55,45 +48,38 @@
       border-radius: 50%;
       box-shadow: 0 0 30px rgba(0, 255, 231, 0.3);
     }
-
     h1 {
       font-size: 2.5rem;
       color: #00ffe7;
       margin-bottom: 0.5rem;
     }
-
     .subtitle {
       font-size: 1.1rem;
       color: #66ccff;
     }
-
     .mascot-hint {
       font-size: 0.9rem;
       color: #66ccff;
       margin-top: 0.5rem;
       font-style: italic;
     }
-
     .mascot-section {
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 2rem auto;
     }
-
     .penguin-container {
       width: 200px;
       height: 200px;
       position: relative;
     }
-
     .penguin {
       position: absolute;
       width: 100%;
       height: 100%;
       animation: spin 4s linear infinite;
     }
-
     .body {
       background-color: #f0f0f0;
       border-radius: 50% 50% 0 0;
@@ -104,7 +90,6 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
     .head {
       background-color: #333;
       border-radius: 50%;
@@ -116,7 +101,6 @@
       transform-origin: bottom center;
       animation: head-move 4s ease-in-out infinite;
     }
-
     .eye {
       background-color: #fff;
       border-radius: 50%;
@@ -127,7 +111,6 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
     .beak {
       background-color: #ff9f36;
       width: 12px;
@@ -138,7 +121,6 @@
       transform: translateX(-50%);
       border-radius: 50% 50% 0 0;
     }
-
     .wing {
       position: absolute;
       width: 20px;
@@ -147,28 +129,23 @@
       transform-origin: center;
       animation: flap 1s ease-in-out infinite alternate-reverse;
     }
-
     .right-wing {
       left: 5%;
       top: 45%;
     }
-
     .left-wing {
       left: 70%;
       top: 45%;
     }
-
     @keyframes spin {
       0% { transform: rotateY(0deg) scale(1); }
       50% { transform: rotateY(180deg) scale(0.9); }
       100% { transform: rotateY(360deg) scale(1); }
     }
-
     @keyframes head-move {
       0% { transform: translateY(-10px) rotateZ(0deg); }
       100% { transform: translateY(-40px) rotateZ(360deg); }
     }
-
     @keyframes flap {
       from { transform: rotate(0deg); }
       to { transform: rotate(-90deg); }
@@ -205,8 +182,72 @@
   </section>
 
   <main class="container">
-    <!-- Include your full existing distro content, grid, sections, etc. here -->
-    <p style="text-align:center; padding: 2rem; color: #ccc;">[Put your main website content here like distro grid, info cards, etc.]</p>
+    <!-- Re-inserting the full Linux distro and info content -->
+    <!-- This will be copied back from your original HTML structure -->
+    <!-- Placeholder: replace with your full Linux content -->
+    <section class="linux-info">
+  <h2>The World of Linux</h2>
+  <div class="info-card">
+    <h3>🐧 What is Linux?</h3>
+    <p>Linux is a free, open-source operating system kernel originally created by Linus Torvalds in 1991. Unlike proprietary systems, Linux gives users complete control over their computing experience. It powers everything from smartphones and servers to supercomputers and space stations.</p>
+    <p>The term "Linux" technically refers to the kernel, but it's commonly used to describe complete operating systems (distributions) built around the Linux kernel, GNU tools, and various software packages.</p>
+  </div>
+  <div class="info-card">
+    <h3>📚 A Brief History</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">1991</span>
+        <p>Linus Torvalds, a Finnish computer science student, announces Linux as a "free operating system" for 386 machines.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1992</span>
+        <p>Linux kernel version 0.12 is released under the GNU General Public License (GPL).</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1993</span>
+        <p>First Linux distributions emerge: Slackware, Debian, and Red Hat are founded.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2000s</span>
+        <p>Linux gains enterprise adoption with Red Hat going public and IBM investing heavily in Linux development.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2007</span>
+        <p>Android (Linux-based) is announced by Google, bringing Linux to mobile devices worldwide.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">Today</span>
+        <p>Linux dominates servers, cloud computing, and embedded systems while gaining desktop market share.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="distros-section">
+  <h2>Popular Linux Distributions</h2>
+  <ul class="distros-grid">
+    <li class="distro-card"><div class="popular-badge">Popular</div><div class="category-badge">Beginner</div><a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a><p class="distro-description">User-friendly Debian-based distribution perfect for beginners and professionals alike.</p></li>
+    <li class="distro-card"><div class="category-badge">Stable</div><a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a><p class="distro-description">Rock-solid foundation for many other distributions, known for stability and reliability.</p></li>
+    <li class="distro-card"><div class="popular-badge">Popular</div><div class="category-badge">Advanced</div><a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a><p class="distro-description">Minimalist, rolling-release distribution for users who want full control and customization.</p></li>
+    <li class="distro-card"><div class="category-badge">Cutting Edge</div><a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a><p class="distro-description">Red Hat-sponsored distribution featuring the latest open source innovations.</p></li>
+    <li class="distro-card"><div class="popular-badge">Popular</div><div class="category-badge">Beginner</div><a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a><p class="distro-description">Elegant and easy-to-use Ubuntu-based distribution with excellent out-of-the-box experience.</p></li>
+    <li class="distro-card"><div class="category-badge">User-Friendly</div><a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a><p class="distro-description">Arch-based distribution that makes the power of Arch accessible to everyone.</p></li>
+    <li class="distro-card"><div class="category-badge">Gaming</div><a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a><p class="distro-description">System76's Ubuntu-based distribution optimized for creators and developers.</p></li>
+    <li class="distro-card"><div class="category-badge">Arch-based</div><a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a><p class="distro-description">Lightweight Arch-based distribution that's perfect for Arch enthusiasts.</p></li>
+    <li class="distro-card"><div class="category-badge">Enterprise</div><a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a><p class="distro-description">Professional-grade distribution with excellent system administration tools.</p></li>
+    <li class="distro-card"><div class="category-badge">Elegant</div><a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a><p class="distro-description">Beautiful Ubuntu-based distribution designed for Windows and Mac users.</p></li>
+    <li class="distro-card"><div class="category-badge">Beautiful</div><a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a><p class="distro-description">Thoughtfully designed distribution that respects your privacy and puts you in control.</p></li>
+    <li class="distro-card"><div class="category-badge">Lightweight</div><a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a><p class="distro-description">Debian-based distribution combining elegant desktop with simple configuration.</p></li>
+    <li class="distro-card"><div class="category-badge">Gaming</div><a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a><p class="distro-description">Arch-based distribution with beautiful themes and gaming optimizations.</p></li>
+    <li class="distro-card"><div class="category-badge">Security</div><a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a><p class="distro-description">Debian-based distribution designed for penetration testing and digital forensics.</p></li>
+    <li class="distro-card"><div class="category-badge">Enterprise</div><a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a><p class="distro-description">Community-driven RHEL clone providing enterprise-grade stability and support.</p></li>
+    <li class="distro-card"><div class="category-badge">Enterprise</div><a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a><p class="distro-description">Enterprise-focused distribution built by the original CentOS founder.</p></li>
+    <li class="distro-card"><div class="category-badge">Lightweight</div><a href="https://peppermintos.com" target="_blank" class="distro-link">Peppermint OS</a><p class="distro-description">Cloud-focused distribution that's fast, lightweight, and easy to use.</p></li>
+    <li class="distro-card"><div class="category-badge">Security</div><a href="https://www.parrotsec.org" target="_blank" class="distro-link">Parrot OS</a><p class="distro-description">Debian-based distribution designed for security testing and privacy protection.</p></li>
+    <li class="distro-card"><div class="category-badge">Minimalist</div><a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a><p class="distro-description">Independent distribution built from scratch with a focus on simplicity and performance.</p></li>
+    <li class="distro-card"><div class="category-badge">Classic</div><a href="https://slackware.org" target="_blank" class="distro-link">Slackware</a><p class="distro-description">One of the oldest Linux distributions, known for its simplicity and Unix-like approach.</p></li>
+  </ul>
+</section>
   </main>
 
   <footer style="text-align:center; padding: 2rem 0; color: #888;">
