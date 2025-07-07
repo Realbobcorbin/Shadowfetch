@@ -2,125 +2,725 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShadowFetch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShadowFetch - Top Linux Distros</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
-      background-color: #1e1e1e;
-      color: #fff;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 231, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(102, 204, 255, 0.1) 0%, transparent 40%),
+        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+      color: #f0f0f0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      padding: 2em;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 1.5em;
-    }
-    .distro-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1em;
-      max-width: 1000px;
-      margin: 2em auto;
-    }
-    .distro a {
-      background-color: #2d2d2d;
-      padding: 0.7em 1em;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #00ffc8;
-      display: block;
-      transition: background-color 0.3s;
-    }
-    .distro a:hover {
-      background-color: #444;
-    }
-    .search-box {
-      margin: 1em auto;
-      max-width: 400px;
-    }
-    .search-box input {
+    
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      padding: 0.5em;
-      border-radius: 8px;
-      border: none;
-      font-size: 1em;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
-    .section {
-      margin-top: 3em;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #00ffe7;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .social-links {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 100;
+    }
+    
+    .social-links a {
+      color: #00ffe7;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(0, 255, 231, 0.3);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 255, 231, 0.1);
+    }
+    
+    .social-links a:hover {
+      color: #0a0a0f;
+      background: #00ffe7;
+      box-shadow: 0 0 20px rgba(0, 255, 231, 0.5);
+      transform: translateY(-2px);
+    }
+    
+    header {
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+    
+    .logo {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 2rem;
+      background: radial-gradient(circle, #00ffe7 0%, #66ccff 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 
+        0 0 40px rgba(0, 255, 231, 0.5),
+        inset 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 255, 231, 0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(0, 255, 231, 0.8); }
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(45deg, #00ffe7, #66ccff, #00ffe7);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 3s ease infinite;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(0, 255, 231, 0.5);
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      color: #66ccff;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    
+    .mascot-hint {
+      font-size: 1rem;
+      color: #00ffe7;
+      font-style: italic;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 255, 231, 0.5); }
+      to { text-shadow: 0 0 20px rgba(0, 255, 231, 0.8); }
+    }
+    
+    .mascot-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem auto;
+      perspective: 1000px;
+    }
+    
+    .penguin-container {
+      width: 250px;
+      height: 250px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .penguin-container:hover {
+      transform: rotateY(20deg) rotateX(10deg);
+    }
+    
+    .penguin {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: float-penguin 4s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(0, 255, 231, 0.3));
+    }
+    
+    @keyframes float-penguin {
+      0%, 100% { transform: translateY(0px) rotateY(0deg); }
+      50% { transform: translateY(-15px) rotateY(180deg); }
+    }
+    
+    .body {
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      border-radius: 50% 50% 0 0;
+      width: 140px;
+      height: 100px;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .head {
+      background: linear-gradient(135deg, #333 0%, #555 100%);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      top: -5%;
+      left: 47%;
+      transform-origin: bottom center;
+      animation: head-bob 2s ease-in-out infinite;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes head-bob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+    
+    .eye {
+      background: radial-gradient(circle, #fff 0%, #f0f0f0 100%);
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .beak {
+      background: linear-gradient(45deg, #ff9f36 0%, #ffb366 100%);
+      width: 15px;
+      height: 12px;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50% 50% 0 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .wing {
+      position: absolute;
+      width: 25px;
+      height: 35px;
+      background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+      border-radius: 50% 0 50% 50%;
+      transform-origin: top center;
+      animation: wing-flap 1.5s ease-in-out infinite alternate;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .right-wing {
+      left: 10%;
+      top: 50%;
+    }
+    
+    .left-wing {
+      right: 10%;
+      top: 50%;
+      transform: scaleX(-1);
+    }
+    
+    @keyframes wing-flap {
+      from { transform: rotate(-15deg); }
+      to { transform: rotate(-45deg); }
+    }
+    
+    .info-section {
+      margin: 4rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .info-card {
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 231, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 231, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .info-card:hover::before {
+      left: 100%;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 231, 0.3);
+      border-color: rgba(0, 255, 231, 0.5);
+    }
+    
+    .info-card h3 {
+      color: #00ffe7;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0, 255, 231, 0.1);
+      border-radius: 10px;
+      border-left: 4px solid #00ffe7;
+    }
+    
+    .year {
+      font-weight: bold;
+      color: #00ffe7;
+      min-width: 60px;
+    }
+    
+    .controls-section {
+      margin: 3rem 0;
+      text-align: center;
+    }
+    
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    #searchInput {
+      padding: 1rem 1.5rem;
+      border-radius: 25px;
+      border: 2px solid rgba(0, 255, 231, 0.3);
+      background: rgba(26, 26, 46, 0.8);
+      color: #f0f0f0;
+      font-size: 1rem;
+      min-width: 250px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    #searchInput:focus {
+      outline: none;
+      border-color: #00ffe7;
+      box-shadow: 0 0 20px rgba(0, 255, 231, 0.3);
+    }
+    
+    #searchInput::placeholder {
+      color: #66ccff;
+    }
+    
+    .filter-button {
+      padding: 0.8rem 1.5rem;
+      background: rgba(26, 26, 46, 0.8);
+      border: 2px solid rgba(102, 204, 255, 0.3);
+      border-radius: 25px;
+      color: #66ccff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .filter-button:hover, .filter-button.active {
+      background: #00ffe7;
+      color: #0a0a0f;
+      border-color: #00ffe7;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 231, 0.4);
+    }
+    
+    .distros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .distro-card {
+      background: rgba(26, 26, 46, 0.9);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 255, 231, 0.2);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .distro-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00ffe7, #66ccff);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .distro-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .distro-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 255, 231, 0.2);
+      border-color: rgba(0, 255, 231, 0.5);
+    }
+    
+    .distro-link {
+      color: #00ffe7;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .distro-link:hover {
+      color: #66ccff;
+      text-shadow: 0 0 10px rgba(102, 204, 255, 0.5);
+    }
+    
+    .distro-description {
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #e0e0e0;
+      line-height: 1.4;
+    }
+    
+    .category-badge {
+      display: inline-block;
+      background: linear-gradient(45deg, #66ccff, #00ffe7);
+      color: #0a0a0f;
+      padding: 0.4rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0, 255, 231, 0.3);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      color: #00ffe7;
+      text-align: center;
+      margin: 3rem 0 2rem;
+      text-shadow: 0 0 20px rgba(0, 255, 231, 0.5);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0, 255, 231, 0.2);
+      margin-top: 4rem;
+    }
+    
+    footer p {
+      color: #66ccff;
+      margin: 0;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .social-links {
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #searchInput {
+        min-width: 200px;
+      }
+      
+      .info-section {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(26, 26, 46, 0.5);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #00ffe7, #66ccff);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(45deg, #66ccff, #00ffe7);
     }
   </style>
-  <script>
-    function filterDistros() {
-      const input = document.getElementById('search').value.toLowerCase();
-      const distros = document.querySelectorAll('.distro');
-      distros.forEach(distro => {
-        const text = distro.innerText.toLowerCase();
-        distro.style.display = text.includes(input) ? 'block' : 'none';
-      });
-    }
-  </script>
 </head>
 <body>
-  <h1>🐧 ShadowFetch</h1>
-  <p>Explore some of the most popular Linux distros out there:</p>
-  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aH... (truncated)" alt="Linux Penguin Mascot" />
-
-  <div class="search-box">
-    <input type="text" id="search" onkeyup="filterDistros()" placeholder="Search for a distro..." />
+  <div class="bg-particles" id="particles"></div>
+  
+  <div class="social-links">
+    <a href="https://x.com/shadowfetch" target="_blank">Twitter</a>
+    <a href="https://bsky.app/profile/shadowfetch.bsky.social" target="_blank">Bluesky</a>
   </div>
 
-  <div class="distro-list">
-    <div class="distro"><a href="https://ubuntu.com/" target="_blank">Ubuntu</a></div>
-    <div class="distro"><a href="https://getfedora.org/" target="_blank">Fedora</a></div>
-    <div class="distro"><a href="https://archlinux.org/" target="_blank">Arch Linux</a></div>
-    <div class="distro"><a href="https://manjaro.org/" target="_blank">Manjaro</a></div>
-    <div class="distro"><a href="https://linuxmint.com/" target="_blank">Linux Mint</a></div>
-    <div class="distro"><a href="https://pop.system76.com/" target="_blank">Pop!_OS</a></div>
-    <div class="distro"><a href="https://zorin.com/os/" target="_blank">Zorin OS</a></div>
-    <div class="distro"><a href="https://elementary.io/" target="_blank">elementary OS</a></div>
-    <div class="distro"><a href="https://endeavouros.com/" target="_blank">EndeavourOS</a></div>
-    <div class="distro"><a href="https://www.kali.org/" target="_blank">Kali Linux</a></div>
-    <div class="distro"><a href="https://mxlinux.org/" target="_blank">MX Linux</a></div>
-    <div class="distro"><a href="https://www.debian.org/" target="_blank">Debian</a></div>
-    <div class="distro"><a href="https://www.opensuse.org/" target="_blank">openSUSE</a></div>
-    <div class="distro"><a href="https://www.parrotsec.org/" target="_blank">Parrot OS</a></div>
-    <div class="distro"><a href="https://voidlinux.org/" target="_blank">Void Linux</a></div>
-    <div class="distro"><a href="https://nixos.org/" target="_blank">NixOS</a></div>
-    <div class="distro"><a href="https://almalinux.org/" target="_blank">AlmaLinux</a></div>
-    <div class="distro"><a href="https://rockylinux.org/" target="_blank">Rocky Linux</a></div>
-    <div class="distro"><a href="https://www.slackware.com/" target="_blank">Slackware</a></div>
-    <div class="distro"><a href="https://tails.boum.org/" target="_blank">Tails</a></div>
-    <div class="distro"><a href="https://www.linuxliteos.com/" target="_blank">Linux Lite</a></div>
-    <div class="distro"><a href="https://www.peppermintos.com/" target="_blank">Peppermint OS</a></div>
-    <div class="distro"><a href="https://www.rebornos.org/" target="_blank">RebornOS</a></div>
-    <div class="distro"><a href="https://artixlinux.org/" target="_blank">Artix Linux</a></div>
-    <div class="distro"><a href="https://bunsenlabs.org/" target="_blank">BunsenLabs</a></div>
-    <div class="distro"><a href="https://blendos.co/" target="_blank">BlendOS</a></div>
-    <div class="distro"><a href="https://nobara.org/" target="_blank">Nobara</a></div>
-  </div>
+  <header>
+    <div class="container">
+      <div class="logo">🐧</div>
+      <h1>ShadowFetch</h1>
+      <p class="subtitle">Your Ultimate Guide to Linux Distributions</p>
+      <div class="mascot-hint">🔮 Cyber Penguin is here to guide your Linux journey</div>
+    </div>
+  </header>
 
-  <div class="section">
-    <h2>📜 A Brief History of Linux</h2>
-    <p>
-      Linux was created in 1991 by Linus Torvalds as a free and open-source alternative to proprietary operating systems.
-      It quickly became the foundation for many popular distributions (distros) and has powered everything from web servers to smartphones (hello Android!).
-      The Linux community continues to grow and innovate every year.
-    </p>
-  </div>
-</body>
-</html>
+  <section class="mascot-section">
+    <div class="penguin-container">
+      <div class="penguin">
+        <div class="body"></div>
+        <div class="head">
+          <div class="eye"></div>
+          <div class="beak"></div>
+        </div>
+        <div class="wing right-wing"></div>
+        <div class="wing left-wing"></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="info-section">
+      <div class="info-card">
+        <h3>🐧 What is Linux?</h3>
+        <p>Linux is a free, open-source operating system kernel originally created by Linus Torvalds in 1991. It powers everything from smartphones and servers to supercomputers and embedded systems, offering unparalleled flexibility and control.</p>
+      </div>
+      <div class="info-card">
+        <h3>📚 A Brief History</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="year">1991</span>
+            <p>Linux kernel announced by Linus Torvalds as a hobby project.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">1993</span>
+            <p>First major distributions: Slackware, Debian, and Red Hat emerge.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">2007</span>
+            <p>Android brings Linux to billions of mobile devices worldwide.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="year">Today</span>
+            <p>Linux dominates servers, mobile, cloud, and embedded systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls-section">
+      <h2 class="section-title">Explore Linux Distributions</h2>
+      <div class="controls">
+        <input id="searchInput" type="text" placeholder="🔍 Search distributions..." />
+        <button class="filter-button active" data-category="">All Distros</button>
+        <button class="filter-button" data-category="Beginner">🚀 Beginner</button>
+        <button class="filter-button" data-category="Gaming">🎮 Gaming</button>
+        <button class="filter-button" data-category="Security">🔒 Security</button>
+        <button class="filter-button" data-category="Enterprise">🏢 Enterprise</button>
+        <button class="filter-button" data-category="Advanced">⚡ Advanced</button>
+      </div>
+      
+      <ul class="distros-grid">
+        <li class="distro-card">
+          <a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a>
+          <p class="distro-description">The world's most popular Linux distribution. Beginner-friendly with excellent hardware support and a vast community.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a>
+          <p class="distro-description">Elegant and familiar desktop experience. Perfect for Windows users transitioning to Linux.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a>
+          <p class="distro-description">Rock-solid stability and massive software repository. The foundation for many other distributions.</p>
+          <span class="category-badge">Enterprise</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a>
+          <p class="distro-description">Cutting-edge technologies and latest software. Sponsored by Red Hat with excellent security.</p>
+          <span class="category-badge">Enterprise</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a>
+          <p class="distro-description">Optimized for productivity and gaming. Excellent NVIDIA support and sleek design.</p>
+          <span class="category-badge">Gaming</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a>
+          <p class="distro-description">User-friendly Arch-based distribution with rolling releases and excellent hardware detection.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a>
+          <p class="distro-description">Minimalist and highly customizable. For users who want complete control over their system.</p>
+          <span class="category-badge">Advanced</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a>
+          <p class="distro-description">Professional-grade distribution with powerful YaST configuration tool and enterprise support.</p>
+          <span class="category-badge">Enterprise</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a>
+          <p class="distro-description">Beautiful and intuitive interface designed to welcome Windows and macOS users.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a>
+          <p class="distro-description">Thoughtfully designed with privacy and elegance in mind. macOS-inspired interface.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a>
+          <p class="distro-description">Lightweight yet full-featured. Perfect balance of performance and usability.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a>
+          <p class="distro-description">The ultimate penetration testing and security auditing platform with 600+ tools.</p>
+          <span class="category-badge">Security</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a>
+          <p class="distro-description">Enterprise-grade RHEL clone with long-term support and stability.</p>
+          <span class="category-badge">Enterprise</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a>
+          <p class="distro-description">Community-driven enterprise operating system designed to be 100% bug-for-bug compatible with RHEL.</p>
+          <span class="category-badge">Enterprise</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a>
+          <p class="distro-description">Gaming-focused Arch-based distribution with stunning visuals and performance optimizations.</p>
+          <span class="category-badge">Gaming</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a>
+          <p class="distro-description">Arch-based with a welcoming community and beginner-friendly approach to advanced Linux.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://getnobara.com" target="_blank" class="distro-link">Nobara</a>
+          <p class="distro-description">Gaming and content creation focused, based on Fedora with multimedia codecs included.</p>
+          <span class="category-badge">Gaming</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.qubes-os.org" target="_blank" class="distro-link">Qubes OS</a>
+          <p class="distro-description">Security through isolation using Xen hypervisor. Recommended by Edward Snowden.</p>
+          <span class="category-badge">Security</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://tails.net" target="_blank" class="distro-link">Tails</a>
+          <p class="distro-description">Privacy-focused live system that routes all traffic through Tor. Leaves no traces.</p>
+          <span class="category-badge">Security</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://gentoo.org" target="_blank" class="distro-link">Gentoo</a>
+          <p class="distro-description">Source-based distribution for ultimate customization and optimization. Compile everything yourself.</p>
+          <span class="category-badge">Advanced</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a>
+          <p class="distro-description">Independent distribution with runit init system and musl libc option. Fast and minimal.</p>
+          <span class="category-badge">Advanced</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://neon.kde.org" target="_blank" class="distro-link">KDE Neon</a>
+          <p class="distro-description">Latest KDE Plasma desktop on solid Ubuntu base. Perfect for KDE enthusiasts.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://solus-project.com" target="_blank" class="distro-link">Solus</a>
+          <p class="distro-description">Independent distribution with custom Budgie desktop environment. Modern and curated.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+        <li class="distro-card">
+          <a href="https://www.deepin.org" target="_blank" class="distro-link">Deepin</a>
+          <p class="distro-description">Visually stunning distribution with custom desktop environment. Beautiful animations and design.</p>
+          <span class="category-badge">Beginner</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="
