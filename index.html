@@ -162,6 +162,43 @@
     
     .mascot-section {
       display: flex;
+      justify-content:3.5rem;
+      background: linear-gradient(45deg, #ff6b6b, #66ccff, #ff6b6b);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 3s ease infinite;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      color: #66ccff;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    
+    .mascot-hint {
+      font-size: 1rem;
+      color: #ff6b6b;
+      font-style: italic;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
+      to { text-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
+    }
+    
+    .mascot-section {
+      display: flex;
       justify-content: center;
       align-items: center;
       margin: 3rem auto;
@@ -299,7 +336,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), Transparent);
       transition: left 0.5s ease;
     }
     
@@ -652,10 +689,8 @@
       border-color: rgba(255, 107, 107, 0.4);
     }
     
-    .blog-post-header**:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
-      border-color: rgba(255, 107, 107, 0.4);
+    .blog-post-header {
+      margin-bottom: 1.5rem;
     }
     
     .blog-post-title {
@@ -863,7 +898,6 @@
             <a href="https://bsky.app/intent/compose?text=Check out Ubuntu on ShadowFetch! https://ubuntu.com" target="_blank" aria-label="Share Ubuntu on Bluesky">Share on Bluesky</a>
           </div>
         </li>
-        <!-- Repeat for other distros with checkboxes and share buttons -->
         <li class="distro-card" data-category="Beginner">
           <input type="checkbox" class="compare-checkbox" aria-label="Select Linux Mint for comparison"/>
           <a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a>
@@ -874,7 +908,226 @@
             <a href="https://bsky.app/intent/compose?text=Check out Linux Mint on ShadowFetch! https://www.linuxmint.com" target="_blank" aria-label="Share Linux Mint on Bluesky">Share on Bluesky</a>
           </div>
         </li>
-        <!-- Add remaining distros similarly -->
+        <li class="distro-card" data-category="Enterprise">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Debian for comparison"/>
+          <a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a>
+          <p class="distro-description">Rock-solid stability and massive software repository. The foundation for many other distributions.</p>
+          <span class="category-badge">Enterprise</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Debian on ShadowFetch!&url=https://www.debian.org" target="_blank" aria-label="Share Debian on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Debian on ShadowFetch! https://www.debian.org" target="_blank" aria-label="Share Debian on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Enterprise">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Fedora for comparison"/>
+          <a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a>
+          <p class="distro-description">Cutting-edge technologies and latest software. Sponsored by Red Hat with excellent security.</p>
+          <span class="category-badge">Enterprise</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Fedora on ShadowFetch!&url=https://getfedora.org" target="_blank" aria-label="Share Fedora on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Fedora on ShadowFetch! https://getfedora.org" target="_blank" aria-label="Share Fedora on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Gaming">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Pop!_OS for comparison"/>
+          <a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a>
+          <p class="distro-description">Optimized for productivity and gaming. Excellent NVIDIA support and sleek design.</p>
+          <span class="category-badge">Gaming</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Pop!_OS on ShadowFetch!&url=https://pop.system76.com" target="_blank" aria-label="Share Pop!_OS on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Pop!_OS on ShadowFetch! https://pop.system76.com" target="_blank" aria-label="Share Pop!_OS on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Manjaro for comparison"/>
+          <a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a>
+          <p class="distro-description">User-friendly Arch-based distribution with rolling releases and excellent hardware detection.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Manjaro on ShadowFetch!&url=https://manjaro.org" target="_blank" aria-label="Share Manjaro on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Manjaro on ShadowFetch! https://manjaro.org" target="_blank" aria-label="Share Manjaro on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Advanced">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Arch Linux for comparison"/>
+          <a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a>
+          <p class="distro-description">Minimalist and highly customizable. For users who want complete control over their system.</p>
+          <span class="category-badge">Advanced</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Arch Linux on ShadowFetch!&url=https://archlinux.org" target="_blank" aria-label="Share Arch Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Arch Linux on ShadowFetch! https://archlinux.org" target="_blank" aria-label="Share Arch Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Enterprise">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select openSUSE for comparison"/>
+          <a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a>
+          <p class="distro-description">Professional-grade distribution with powerful YaST configuration tool and enterprise support.</p>
+          <span class="category-badge">Enterprise</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out openSUSE on ShadowFetch!&url=https://www.opensuse.org" target="_blank" aria-label="Share openSUSE on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out openSUSE on ShadowFetch! https://www.opensuse.org" target="_blank" aria-label="Share openSUSE on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Zorin OS for comparison"/>
+          <a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a>
+          <p class="distro-description">Beautiful and intuitive interface designed to welcome Windows and macOS users.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Zorin OS on ShadowFetch!&url=https://zorin.com/os" target="_blank" aria-label="Share Zorin OS on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Zorin OS on ShadowFetch! https://zorin.com/os" target="_blank" aria-label="Share Zorin OS on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Elementary OS for comparison"/>
+          <a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a>
+          <p class="distro-description">Thoughtfully designed with privacy and elegance in mind. macOS-inspired interface.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Elementary OS on ShadowFetch!&url=https://elementary.io" target="_blank" aria-label="Share Elementary OS on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Elementary OS on ShadowFetch! https://elementary.io" target="_blank" aria-label="Share Elementary OS on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select MX Linux for comparison"/>
+          <a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a>
+          <p class="distro-description">Lightweight yet full-featured. Perfect balance of performance and usability.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out MX Linux on ShadowFetch!&url=https://mxlinux.org" target="_blank" aria-label="Share MX Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out MX Linux on ShadowFetch! https://mxlinux.org" target="_blank" aria-label="Share MX Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Security">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Kali Linux for comparison"/>
+          <a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a>
+          <p class="distro-description">The ultimate penetration testing and security auditing platform with 600+ tools.</p>
+          <span class="category-badge">Security</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Kali Linux on ShadowFetch!&url=https://www.kali.org" target="_blank" aria-label="Share Kali Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Kali Linux on ShadowFetch! https://www.kali.org" target="_blank" aria-label="Share Kali Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Enterprise">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select AlmaLinux for comparison"/>
+          <a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a>
+          <p class="distro-description">Enterprise-grade RHEL clone with long-term support and stability.</p>
+          <span class="category-badge">Enterprise</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out AlmaLinux on ShadowFetch!&url=https://almalinux.org" target="_blank" aria-label="Share AlmaLinux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out AlmaLinux on ShadowFetch! https://almalinux.org" target="_blank" aria-label="Share AlmaLinux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Enterprise">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Rocky Linux for comparison"/>
+          <a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a>
+          <p class="distro-description">Community-driven enterprise operating system designed to be 100% bug-for-bug compatible with RHEL.</p>
+          <span class="category-badge">Enterprise</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Rocky Linux on ShadowFetch!&url=https://rockylinux.org" target="_blank" aria-label="Share Rocky Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Rocky Linux on ShadowFetch! https://rockylinux.org" target="_blank" aria-label="Share Rocky Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Gaming">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Garuda Linux for comparison"/>
+          <a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a>
+          <p class="distro-description">Gaming-focused Arch-based distribution with stunning visuals and performance optimizations.</p>
+          <span class="category-badge">Gaming</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Garuda Linux on ShadowFetch!&url=https://garudalinux.org" target="_blank" aria-label="Share Garuda Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Garuda Linux on ShadowFetch! https://garudalinux.org" target="_blank" aria-label="Share Garuda Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select EndeavourOS for comparison"/>
+          <a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a>
+          <p class="distro-description">Arch-based with a welcoming community and beginner-friendly approach to advanced Linux.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out EndeavourOS on ShadowFetch!&url=https://endeavouros.com" target="_blank" aria-label="Share EndeavourOS on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out EndeavourOS on ShadowFetch! https://endeavouros.com" target="_blank" aria-label="Share EndeavourOS on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Gaming">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Nobara for comparison"/>
+          <a href="https://getnobara.com" target="_blank" class="distro-link">Nobara</a>
+          <p class="distro-description">Gaming and content creation focused, based on Fedora with multimedia codecs included.</p>
+          <span class="category-badge">Gaming</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Nobara on ShadowFetch!&url=https://getnobara.com" target="_blank" aria-label="Share Nobara on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Nobara on ShadowFetch! https://getnobara.com" target="_blank" aria-label="Share Nobara on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Security">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Qubes OS for comparison"/>
+          <a href="https://www.qubes-os.org" target="_blank" class="distro-link">Qubes OS</a>
+          <p class="distro-description">Security through isolation using Xen hypervisor. Recommended by Edward Snowden.</p>
+          <span class="category-badge">Security</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Qubes OS on ShadowFetch!&url=https://www.qubes-os.org" target="_blank" aria-label="Share Qubes OS on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Qubes OS on ShadowFetch! https://www.qubes-os.org" target="_blank" aria-label="Share Qubes OS on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Security">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Tails for comparison"/>
+          <a href="https://tails.net" target="_blank" class="distro-link">Tails</a>
+          <p class="distro-description">Privacy-focused live system that routes all traffic through Tor. Leaves no traces.</p>
+          <span class="category-badge">Security</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Tails on ShadowFetch!&url=https://tails.net" target="_blank" aria-label="Share Tails on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Tails on ShadowFetch! https://tails.net" target="_blank" aria-label="Share Tails on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Advanced">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Gentoo for comparison"/>
+          <a href="https://gentoo.org" target="_blank" class="distro-link">Gentoo</a>
+          <p class="distro-description">Source-based distribution for ultimate customization and optimization. Compile everything yourself.</p>
+          <span class="category-badge">Advanced</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Gentoo on ShadowFetch!&url=https://gentoo.org" target="_blank" aria-label="Share Gentoo on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Gentoo on ShadowFetch! https://gentoo.org" target="_blank" aria-label="Share Gentoo on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Advanced">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Void Linux for comparison"/>
+          <a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a>
+          <p class="distro-description">Independent distribution with runit init system and musl libc option. Fast and minimal.</p>
+          <span class="category-badge">Advanced</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Void Linux on ShadowFetch!&url=https://voidlinux.org" target="_blank" aria-label="Share Void Linux on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Void Linux on ShadowFetch! https://voidlinux.org" target="_blank" aria-label="Share Void Linux on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select KDE Neon for comparison"/>
+          <a href="https://neon.kde.org" target="_blank" class="distro-link">KDE Neon</a>
+          <p class="distro-description">Latest KDE Plasma desktop on solid Ubuntu base. Perfect for KDE enthusiasts.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out KDE Neon on ShadowFetch!&url=https://neon.kde.org" target="_blank" aria-label="Share KDE Neon on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out KDE Neon on ShadowFetch! https://neon.kde.org" target="_blank" aria-label="Share KDE Neon on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Solus for comparison"/>
+          <a href="https://solus-project.com" target="_blank" class="distro-link">Solus</a>
+          <p class="distro-description">Independent distribution with custom Budgie desktop environment. Modern and curated.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Solus on ShadowFetch!&url=https://solus-project.com" target="_blank" aria-label="Share Solus on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Solus on ShadowFetch! https://solus-project.com" target="_blank" aria-label="Share Solus on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
+        <li class="distro-card" data-category="Beginner">
+          <input type="checkbox" class="compare-checkbox" aria-label="Select Deepin for comparison"/>
+          <a href="https://www.deepin.org" target="_blank" class="distro-link">Deepin</a>
+          <p class="distro-description">Visually stunning distribution with custom desktop environment. Beautiful animations and design.</p>
+          <span class="category-badge">Beginner</span>
+          <div class="distro-share">
+            <a href="https://x.com/intent/tweet?text=Check out Deepin on ShadowFetch!&url=https://www.deepin.org" target="_blank" aria-label="Share Deepin on Twitter">Share on Twitter</a>
+            <a href="https://bsky.app/intent/compose?text=Check out Deepin on ShadowFetch! https://www.deepin.org" target="_blank" aria-label="Share Deepin on Bluesky">Share on Bluesky</a>
+          </div>
+        </li>
       </ul>
       <button class="load-more" aria-label="Load more distributions">Load More</button>
     </section>
@@ -929,7 +1182,7 @@
 
   <div class="modal" id="compareModal">
     <div class="modal-content">
-      <span class="close-modal" aria-label="Close comparison modal">&times;</span>
+      <span class="close-modal" aria-label="Close comparison modal">×</span>
       <h2>Compare Distributions</h2>
       <table id="comparisonTable">
         <thead>
@@ -947,7 +1200,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 ShadowFetch. All rights reserved.</p>
+      <p>© 2025 ShadowFetch. All rights reserved.</p>
     </div>
   </footer>
 
