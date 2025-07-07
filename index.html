@@ -17,7 +17,6 @@
       height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      margin-bottom: 2em;
     }
     h1 {
       font-size: 3em;
@@ -32,7 +31,7 @@
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1em;
       max-width: 1000px;
-      margin: 0 auto 2em;
+      margin: 2em auto;
     }
     .distro a {
       background-color: #2d2d2d;
@@ -46,33 +45,46 @@
     .distro a:hover {
       background-color: #444;
     }
-    #search {
-      padding: 0.5em;
-      width: 80%;
+    .search-box {
+      margin: 1em auto;
       max-width: 400px;
-      margin-bottom: 1.5em;
-      border-radius: 6px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 8px;
       border: none;
       font-size: 1em;
     }
-    .history {
+    .section {
+      margin-top: 3em;
       max-width: 800px;
-      margin: 2em auto;
-      font-size: 1em;
-      background: #2a2a2a;
-      padding: 1.5em;
-      border-radius: 10px;
-      line-height: 1.6;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
   </style>
+  <script>
+    function filterDistros() {
+      const input = document.getElementById('search').value.toLowerCase();
+      const distros = document.querySelectorAll('.distro');
+      distros.forEach(distro => {
+        const text = distro.innerText.toLowerCase();
+        distro.style.display = text.includes(input) ? 'block' : 'none';
+      });
+    }
+  </script>
 </head>
 <body>
   <h1>🐧 ShadowFetch</h1>
   <p>Explore some of the most popular Linux distros out there:</p>
-  <img src="Linux.jpg" alt="Linux Penguin Mascot" />
-  <input type="text" id="search" placeholder="Search for a Linux distro..." onkeyup="filterDistros()" />
+  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aH... (truncated)" alt="Linux Penguin Mascot" />
 
-  <div class="distro-list" id="distroList">
+  <div class="search-box">
+    <input type="text" id="search" onkeyup="filterDistros()" placeholder="Search for a distro..." />
+  </div>
+
+  <div class="distro-list">
     <div class="distro"><a href="https://ubuntu.com/" target="_blank">Ubuntu</a></div>
     <div class="distro"><a href="https://getfedora.org/" target="_blank">Fedora</a></div>
     <div class="distro"><a href="https://archlinux.org/" target="_blank">Arch Linux</a></div>
@@ -84,46 +96,31 @@
     <div class="distro"><a href="https://endeavouros.com/" target="_blank">EndeavourOS</a></div>
     <div class="distro"><a href="https://www.kali.org/" target="_blank">Kali Linux</a></div>
     <div class="distro"><a href="https://mxlinux.org/" target="_blank">MX Linux</a></div>
-    <div class="distro"><a href="https://debian.org/" target="_blank">Debian</a></div>
-    <div class="distro"><a href="https://opensuse.org/" target="_blank">openSUSE</a></div>
-    <div class="distro"><a href="https://www.alpinelinux.org/" target="_blank">Alpine Linux</a></div>
+    <div class="distro"><a href="https://www.debian.org/" target="_blank">Debian</a></div>
+    <div class="distro"><a href="https://www.opensuse.org/" target="_blank">openSUSE</a></div>
     <div class="distro"><a href="https://www.parrotsec.org/" target="_blank">Parrot OS</a></div>
     <div class="distro"><a href="https://voidlinux.org/" target="_blank">Void Linux</a></div>
-    <div class="distro"><a href="https://bunsenlabs.org/" target="_blank">BunsenLabs</a></div>
-    <div class="distro"><a href="https://peppermintos.com/" target="_blank">Peppermint OS</a></div>
-    <div class="distro"><a href="https://lxle.net/" target="_blank">LXLE</a></div>
-    <div class="distro"><a href="https://q4os.org/" target="_blank">Q4OS</a></div>
-    <div class="distro"><a href="https://sparkylinux.org/" target="_blank">SparkyLinux</a></div>
-    <div class="distro"><a href="https://www.slax.org/" target="_blank">Slax</a></div>
-    <div class="distro"><a href="https://www.tinycorelinux.net/" target="_blank">Tiny Core</a></div>
-    <div class="distro"><a href="https://www.deepin.org/en/" target="_blank">Deepin</a></div>
-    <div class="distro"><a href="https://clearlinux.org/" target="_blank">Clear Linux</a></div>
-    <div class="distro"><a href="https://calculate-linux.org/" target="_blank">Calculate Linux</a></div>
-    <div class="distro"><a href="https://www.redhat.com/" target="_blank">Red Hat Enterprise</a></div>
-    <div class="distro"><a href="https://rockylinux.org/" target="_blank">Rocky Linux</a></div>
-    <div class="distro"><a href="https://almalinux.org/" target="_blank">AlmaLinux</a></div>
     <div class="distro"><a href="https://nixos.org/" target="_blank">NixOS</a></div>
-    <div class="distro"><a href="https://guix.gnu.org/" target="_blank">Guix</a></div>
-    <div class="distro"><a href="https://bedrocklinux.org/" target="_blank">Bedrock Linux</a></div>
-    <div class="distro"><a href="https://bluestarlinux.org/" target="_blank">Bluestar Linux</a></div>
+    <div class="distro"><a href="https://almalinux.org/" target="_blank">AlmaLinux</a></div>
+    <div class="distro"><a href="https://rockylinux.org/" target="_blank">Rocky Linux</a></div>
+    <div class="distro"><a href="https://www.slackware.com/" target="_blank">Slackware</a></div>
+    <div class="distro"><a href="https://tails.boum.org/" target="_blank">Tails</a></div>
+    <div class="distro"><a href="https://www.linuxliteos.com/" target="_blank">Linux Lite</a></div>
+    <div class="distro"><a href="https://www.peppermintos.com/" target="_blank">Peppermint OS</a></div>
+    <div class="distro"><a href="https://www.rebornos.org/" target="_blank">RebornOS</a></div>
     <div class="distro"><a href="https://artixlinux.org/" target="_blank">Artix Linux</a></div>
-    <div class="distro"><a href="https://trisquel.info/" target="_blank">Trisquel</a></div>
+    <div class="distro"><a href="https://bunsenlabs.org/" target="_blank">BunsenLabs</a></div>
+    <div class="distro"><a href="https://blendos.co/" target="_blank">BlendOS</a></div>
+    <div class="distro"><a href="https://nobara.org/" target="_blank">Nobara</a></div>
   </div>
 
-  <div class="history">
+  <div class="section">
     <h2>📜 A Brief History of Linux</h2>
-    <p>Linux was created in 1991 by Linus Torvalds as a hobby project to create a free operating system kernel. Inspired by MINIX, he released it under the GNU General Public License, and the rest is history. Linux has grown into a powerful family of open-source OSes that power everything from smartphones to supercomputers!</p>
+    <p>
+      Linux was created in 1991 by Linus Torvalds as a free and open-source alternative to proprietary operating systems.
+      It quickly became the foundation for many popular distributions (distros) and has powered everything from web servers to smartphones (hello Android!).
+      The Linux community continues to grow and innovate every year.
+    </p>
   </div>
-
-  <script>
-    function filterDistros() {
-      const input = document.getElementById('search').value.toLowerCase();
-      const distros = document.querySelectorAll('.distro');
-      distros.forEach(distro => {
-        const name = distro.textContent.toLowerCase();
-        distro.style.display = name.includes(input) ? 'block' : 'none';
-      });
-    }
-  </script>
 </body>
 </html>
