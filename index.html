@@ -31,7 +31,7 @@
 <body class="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white p-10">
 
   <div class="flex justify-center mb-10">
-    <img src="./image%20(1)_upscayl_4x_upscayl-standard-4x.png" alt="ShadowFetch Logo" class="w-1/2 max-w-xs animate-fade-in-up" />
+    <img src="https://raw.githubusercontent.com/your-username/your-repo/main/assets/shadowfetchnews.png" alt="ShadowFetch Logo" class="w-1/2 max-w-xs animate-fade-in-up" />
   </div>
 
   <h1 class="text-6xl font-bold mb-6 text-center animate-pulse">ShadowFetchNews</h1>
@@ -41,7 +41,7 @@
       🗞️ Global News Feeds
     </h2>
     <div id="rss-news" class="space-y-4 text-sm text-gray-300">
-      <p>Fetching top headlines from BBC, Reuters, Ars Technica, and Hacker News...</p>
+      <p>Fetching top headlines...</p>
     </div>
   </section>
 
@@ -54,30 +54,39 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // RSS Feeds
       const feeds = [
+        'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
         'https://feeds.bbci.co.uk/news/rss.xml',
         'https://feeds.reuters.com/reuters/topNews',
         'https://feeds.arstechnica.com/arstechnica/index',
         'https://hnrss.org/frontpage'
       ];
 
-      const fetchRSS = url => fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)
-        .then(res => res.json());
+      const fetchRSS = url =>
+        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`)
+          .then(res => res.json())
+          .then(data => new window.DOMParser().parseFromString(data.contents, "text/xml"));
 
       Promise.all(feeds.map(fetchRSS)).then(results => {
         const container = document.getElementById('rss-news');
-        container.innerHTML = results.flatMap(data =>
-          data.items.slice(0, 3).map(item => `
-            <div class="p-4 bg-zinc-800 rounded-xl border border-green-600 animate-slide-in-left">
-              <h3 class="text-lg font-semibold text-green-300">${item.title}</h3>
-              <p><a href="${item.link}" target="_blank" class="underline text-green-400">Read more</a></p>
-            </div>
-          `)
-        ).join('');
+        container.innerHTML = '';
+        results.forEach(feed => {
+          const items = feed.querySelectorAll('item');
+          items.forEach((item, index) => {
+            if (index < 2) {
+              const title = item.querySelector('title').textContent;
+              const link = item.querySelector('link').textContent;
+              container.innerHTML += `
+                <div class="p-4 bg-zinc-800 rounded-xl border border-green-600 animate-slide-in-left">
+                  <h3 class="text-lg font-semibold text-green-300">${title}</h3>
+                  <p><a href="${link}" target="_blank" class="underline text-green-400">Read more</a></p>
+                </div>
+              `;
+            }
+          });
+        });
       });
 
-      // Weather Feed
       const cities = [
         { name: 'New York', lat: 40.71, lon: -74.01 },
         { name: 'Tokyo', lat: 35.68, lon: 139.69 },
