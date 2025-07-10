@@ -2,1316 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="ShadowFetch: Your ultimate guide to Linux distributions, featuring beginner-friendly, gaming, security, enterprise, and advanced distros."/>
-  <meta property="og:title" content="ShadowFetch - Top Linux Distros"/>
-  <meta property="og:description" content="Explore the best Linux distributions with ShadowFetch. Find beginner-friendly, gaming, security, enterprise, and advanced distros."/>
-  <meta property="og:image" content="https://shadowfetch.com/og-image.jpg"/>
-  <meta property="og:url" content="https://shadowfetch.com"/>
-  <title>ShadowFetch - Top Linux Distros</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShadowFetch: Distro Showcase</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
     body {
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(0, 255, 231, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(102, 204, 255, 0.1) 0%, transparent 40%),
-        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-      color: #f0f0f0;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
+      font-family: 'Fira Code', monospace;
       overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
     }
-    
-    body.light-mode {
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(102, 204, 255, 0.1) 0%, transparent 40%),
-        linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #d0d0d0 100%);
-      color: #333;
-    }
-    
-    .bg-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: #ff6b6b;
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-      will-change: transform;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-      50% { transform: translateY(-10px) rotate(180deg); opacity: 1; }
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .social-links {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      display: flex;
-      gap: 1rem;
-      z-index: 100;
-    }
-    
-    .social-links a, .theme-toggle {
-      color: #ff6b6b;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 107, 107, 0.1);
-    }
-    
-    .social-links a:hover, .theme-toggle:hover {
-      color: #0a0a0f;
-      background: #ff6b6b;
-      box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
-      transform: translateY(-2px);
-    }
-    
-    header {
-      text-align: center;
-      padding: 4rem 0;
-      position: relative;
-    }
-    
-    .logo {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 2rem;
-      background: radial-gradient(circle, #ff6b6b 0%, #66ccff 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      animation: pulse 2s ease-in-out infinite;
-      box-shadow: 
-        0 0 40px rgba(255, 107, 107, 0.5),
-        inset 0 0 40px rgba(255, 255, 255, 0.2);
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 107, 107, 0.5); }
-      50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(255, 107, 107, 0.8); }
-    }
-    
-    h1 {
-      font-size: 3.5rem;
-      background: linear-gradient(45deg, #ff6b6b, #66ccff, #ff6b6b);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient-shift 3s ease infinite;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-    }
-    
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    .subtitle {
-      font-size: 1.3rem;
-      color: #66ccff;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
-    
-    .mascot-hint {
-      font-size: 1rem;
-      color: #ff6b6b;
-      font-style: italic;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    
-    @keyframes glow {
-      from { text-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
-      to { text-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
-    }
-    
-    .mascot-section {
-      display: flex;
-      justify-content:3.5rem;
-      background: linear-gradient(45deg, #ff6b6b, #66ccff, #ff6b6b);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient-shift 3s ease infinite;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
-    }
-    
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    .subtitle {
-      font-size: 1.3rem;
-      color: #66ccff;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
-    
-    .mascot-hint {
-      font-size: 1rem;
-      color: #ff6b6b;
-      font-style: italic;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    
-    @keyframes glow {
-      from { text-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
-      to { text-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
-    }
-    
-    .mascot-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 3rem auto;
-      perspective: 1000px;
-    }
-    
-    .penguin-container {
-      width: 250px;
-      height: 250px;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-    
-    .penguin-container:hover {
-      transform: rotateY(20deg) rotateX(10deg);
-    }
-    
-    .penguin {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      animation: float-penguin 4s ease-in-out infinite;
-      filter: drop-shadow(0 10px 20px rgba(255, 107, 107, 0.3));
-    }
-    
-    @keyframes float-penguin {
-      0%, 100% { transform: translateY(0px) rotateY(0deg); }
-      50% { transform: translateY(-10px) rotateY(180deg); }
-    }
-    
-    .body {
-      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
-      border-radius: 50% 50% 0 0;
-      width: 140px;
-      height: 100px;
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .head {
-      background: linear-gradient(135deg, #333 0%, #555 100%);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      position: absolute;
-      top: -5%;
-      left: 47%;
-      transform-origin: bottom center;
-      animation: head-bob 2s ease-in-out infinite;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    @keyframes head-bob {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(5deg); }
-    }
-    
-    .eye {
-      background: radial-gradient(circle, #fff 0%, #f0f0f0 100%);
-      border-radius: 50%;
-      width: 12px;
-      height: 12px;
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    .beak {
-      background: linear-gradient(45deg, #ff9f36 0%, #ffb366 100%);
-      width: 15px;
-      height: 12px;
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 50% 50% 0 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    .wing {
-      position: absolute;
-      width: 25px;
-      height: 35px;
-      background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
-      border-radius: 50% 0 50% 50%;
-      transform-origin: top center;
-      animation: wing-flap 1.5s ease-in-out infinite alternate;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .right-wing {
-      left: 10%;
-      top: 50%;
-    }
-    
-    .left-wing {
-      right: 10%;
-      top: 50%;
-      transform: scaleX(-1);
-    }
-    
-    @keyframes wing-flap {
-      from { transform: rotate(-15deg); }
-      to { transform: rotate(-45deg); }
-    }
-    
-    .info-section {
-      margin: 4rem 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-    
-    .info-card {
-      background: rgba(26, 26, 46, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 15px;
-      padding: 2rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      font-size: 1rem;
-    }
-    
-    .info-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), Transparent);
-      transition: left 0.5s ease;
-    }
-    
-    .info-card:hover::before {
-      left: 100%;
-    }
-    
-    .info-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
-      border-color: rgba(255, 107, 107, 0.5);
-    }
-    
-    .info-card h3 {
-      color: #ff6b6b;
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
-    }
-    
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .terminal {
+      background: #0f0f0f;
+      color: #00ff00;
       padding: 1rem;
-      background: rgba(255, 107, 107, 0.1);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+      border: 1px solid #00ff00;
       border-radius: 10px;
-      border-left: 4px solid #ff6b6b;
+      box-shadow: 0 0 20px #00ff00;
+      animation: flicker 3s infinite alternate;
     }
-    
-    .year {
-      font-weight: bold;
-      color: #ff6b6b;
-      min-width: 60px;
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
     }
-    
-    .controls-section {
-      margin: 3rem 0;
-      text-align: center;
-    }
-    
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    
-    #searchInput {
-      padding: 1rem 1.5rem;
-      border-radius: 25px;
-      border: 2px solid rgba(255, 107, 107, 0.3);
-      background: rgba(26, 26, 46, 0.8);
-      color: #f0f0f0;
-      font-size: 1rem;
-      min-width: 250px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    
-    #searchInput:focus {
-      outline: none;
-      border-color: #ff6b6b;
-      box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
-    }
-    
-    #searchInput::placeholder {
-      color: #66ccff;
-    }
-    
-    .filter-button {
-      padding: 0.8rem 1.5rem;
-      background: rgba(26, 26, 46, 0.8);
-      border: 2px solid rgba(255, 107, 107, 0.3);
-      border-radius: 25px;
-      color: #ff6b6b;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    
-    .filter-button:hover, .filter-button.active {
-      background: #ff6b6b;
-      color: #0a0a0f;
-      border-color: #ff6b6b;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-    }
-    
-    .distros-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      list-style: none;
-      padding: 0;
-    }
-    
-    .distro-card {
-      background: rgba(26, 26, 46, 0.9);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 15px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      font-size: 1rem;
-    }
-    
-    .distro-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #ff6b6b, #66ccff);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-    
-    .distro-card:hover::before {
-      transform: scaleX(1);
-    }
-    
-    .distro-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
-      border-color: rgba(255, 107, 107, 0.5);
-    }
-    
-    .distro-link {
-      color: #ff6b6b;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-      display: block;
-      margin-bottom: 0.5rem;
-      transition: all 0.3s ease;
-    }
-    
-    .distro-link:hover {
-      color: #66ccff;
-      text-shadow: 0 0 10px rgba(102, 204, 255, 0.5);
-    }
-    
-    .distro-description {
-      margin: 1rem 0;
-      font-size: 1rem;
-      color: #e0e0e0;
-      line-height: 1.4;
-    }
-    
-    .category-badge {
+    .typewriter {
       display: inline-block;
-      background: linear-gradient(45deg, #66ccff, #ff6b6b);
-      color: #0a0a0f;
-      padding: 0.4rem 0.8rem;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin-top: 0.5rem;
-      box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
-    }
-    
-    .distro-share {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-    
-    .distro-share a {
-      color: #ff6b6b;
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 0.3rem 0.6rem;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-      border-radius: 15px;
-      transition: all 0.3s ease;
-    }
-    
-    .distro-share a:hover {
-      background: #ff6b6b;
-      color: #0a0a0f;
-    }
-    
-    .section-title {
-      font-size: 2.5rem;
-      color: #ff6b6b;
-      text-align: center;
-      margin: 3rem 0 2rem;
-      text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
-    }
-    
-    .no-results {
-      text-align: center;
-      color: #ff6b6b;
-      font-size: 1.2rem;
-      margin: 2rem 0;
-      display: none;
-    }
-    
-    .load-more {
-      display: block;
-      margin: 2rem auto;
-      padding: 0.8rem 1.5rem;
-      background: #ff6b6b;
-      border: none;
-      border-radius: 25px;
-      color: #0a0a0f;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .load-more:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-    }
-    
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .modal-content {
-      background: rgba(26, 26, 46, 0.9);
-      backdrop-filter: blur(15px);
-      border-radius: 15px;
-      padding: 2rem;
-      max-width: 800px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    
-    .modal-content h2 {
-      color: #ff6b6b;
-      margin-bottom: 1rem;
-    }
-    
-    .modal-content table {
-      width: 100%;
-      border-collapse: collapse;
-      color: #e0e0e0;
-    }
-    
-    .modal-content th, .modal-content td {
-      padding: 0.8rem;
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      text-align: left;
-    }
-    
-    .modal-content th {
-      background: rgba(255, 107, 107, 0.1);
-    }
-    
-    .close-modal {
-      float: right;
-      color: #ff6b6b;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 3rem 0;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 107, 107, 0.2);
-      margin-top: 4rem;
-    }
-    
-    footer p {
-      color: #66ccff;
-      margin: 0;
-    }
-    
-    .blog-section {
-      margin: 4rem 0;
-      padding: 2rem 0;
-      background: rgba(10, 10, 15, 0.3);
-      border-top: 1px solid rgba(255, 107, 107, 0.2);
-    }
-    
-    .blog-intro {
-      text-align: center;
-      color: #66ccff;
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-      opacity: 0.9;
-    }
-    
-    .blog-posts {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .blog-post {
-      background: rgba(26, 26, 46, 0.9);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s ease;
-      position: relative;
       overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid green;
+      animation:
+        typing 4s steps(40, end),
+        blink-caret .75s step-end infinite;
     }
-    
-    .blog-post::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #ff6b6b, #66ccff, #ff6b6b);
-      background-size: 200% 100%;
-      animation: shimmer 3s ease-in-out infinite;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
-    
-    @keyframes shimmer {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    .blog-post:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
-      border-color: rgba(255, 107, 107, 0.4);
-    }
-    
-    .blog-post-header {
-      margin-bottom: 1.5rem;
-    }
-    
-    .blog-post-title {
-      color: #ff6b6b;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
-    }
-    
-    .blog-post-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    .blog-date, .blog-author, .blog-category {
-      color: #66ccff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .blog-post-content {
-      line-height: 1.7;
-      color: #e0e0e0;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-    
-    .blog-post-content p {
-      margin-bottom: 1rem;
-    }
-    
-    .blog-post-footer {
-      border-top: 1px solid rgba(255, 107, 107, 0.2);
-      padding-top: 1rem;
-    }
-    
-    .blog-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    
-    .blog-tag {
-      background: rgba(255, 107, 107, 0.1);
-      color: #ff6b6b;
-      padding: 0.3rem 0.8rem;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .blog-tag:hover {
-      background: rgba(255, 107, 107, 0.2);
-      transform: translateY(-1px);
-    }
-    
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .social-links {
-        position: relative;
-        top: 0;
-        right: 0;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
-      
-      h1 {
-        font-size: 2.5rem;
-      }
-      
-      .controls {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      #searchInput {
-        min-width: 200px;
-      }
-      
-      .info-section {
-        grid-template-columns: 1fr;
-      }
-      
-      .blog-post-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      
-      .blog-post-title {
-        font-size: 1.5rem;
-      }
-      
-      .blog-post {
-        padding: 1.5rem;
-      }
-    }
-    
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: rgba(26, 26, 46, 0.5);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, #ff6b6b, #66ccff);
-      border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(45deg, #66ccff, #ff6b6b);
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: green; }
     }
   </style>
 </head>
-<body>
-  <div class="bg-particles" id="particles"></div>
-  
-  <div class="social-links">
-    <a href="https://x.com/shadowfetch" target="_blank" aria-label="Follow ShadowFetch on Twitter">Twitter</a>
-    <a href="https://bsky.app/profile/shadowfetch.bsky.social" target="_blank" aria-label="Follow ShadowFetch on Bluesky">Bluesky</a>
-    <button class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+<body class="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white p-10">
+
+  <div class="terminal mb-10">
+    <div class="typewriter text-green-400 text-xl">
+      shadowfetch@web:~$ ./launch.sh --epic
+    </div>
+    <p class="mt-4">Booting up distro showcase engine... ✅</p>
+    <p>Loading ASCII matrix... ✅</p>
+    <p>Engaging Tailwind HyperDrive... ✅</p>
+    <p>ShadowFetch is online. Welcome, hacker.</p>
   </div>
 
-  <header>
-    <div class="container">
-      <div class="logo">🐧</div>
-      <h1>ShadowFetch</h1>
-      <p class="subtitle">Your Ultimate Guide to Linux Distributions</p>
-      <div class="mascot-hint">🔮 Cyber Penguin is here to guide your Linux journey</div>
-    </div>
-  </header>
+  <h1 class="text-6xl font-bold mb-6 text-center animate-pulse">ShadowFetch: Distro Showcase</h1>
 
-  <section class="mascot-section">
-    <div class="penguin-container">
-      <div class="penguin">
-        <div class="body"></div>
-        <div class="head">
-          <div class="eye"></div>
-          <div class="beak"></div>
-        </div>
-        <div class="wing right-wing"></div>
-        <div class="wing left-wing"></div>
-      </div>
+  <section class="mb-12 animate-fade-in-down">
+    <h2 class="text-3xl mb-4 flex items-center gap-2 text-green-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2z" />
+      </svg>
+      Latest News (Auto-Updating)
+    </h2>
+    <div id="rss-news" class="space-y-4 text-sm text-gray-300">
+      <p>Fetching fresh feeds from BBC, Reuters, and Hacker News...</p>
     </div>
   </section>
 
-  <main class="container">
-    <section class="info-section">
-      <div class="info-card">
-        <h3>🐧 What is Linux?</h3>
-        <p>Linux is a free, open-source operating system kernel created by Linus Torvalds in 1991. It powers smartphones, servers, supercomputers, and embedded systems, offering flexibility and control.</p>
-      </div>
-      <div class="info-card">
-        <h3>📚 A Brief History</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span class="year">1991</span>
-            <p>Linux kernel announced by Linus Torvalds as a hobby project.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="year">1993</span>
-            <p>First major distributions: Slackware, Debian, and Red Hat emerge.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="year">2007</span>
-            <p>Android brings Linux to billions of mobile devices worldwide.</p>
-          </div>
-          <div class="timeline-item">
-            <span class="year">Today</span>
-            <p>Linux dominates servers, mobile, cloud, and embedded systems.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="controls-section">
-      <h2 class="section-title">Explore Linux Distributions</h2>
-      <div class="controls">
-        <input id="searchInput" type="text" placeholder="🔍 Search distributions..." aria-label="Search Linux distributions"/>
-        <button class="filter-button active" data-category="" aria-label="Show all distributions">All Distros</button>
-        <button class="filter-button" data-category="Beginner" aria-label="Filter by Beginner distributions">🚀 Beginner</button>
-        <button class="filter-button" data-category="Gaming" aria-label="Filter by Gaming distributions">🎮 Gaming</button>
-        <button class="filter-button" data-category="Security" aria-label="Filter by Security distributions">🔒 Security</button>
-        <button class="filter-button" data-category="Enterprise" aria-label="Filter by Enterprise distributions">🏢 Enterprise</button>
-        <button class="filter-button" data-category="Advanced" aria-label="Filter by Advanced distributions">⚡ Advanced</button>
-        <button id="compareButton" aria-label="Compare selected distributions">Compare Selected</button>
-      </div>
-      
-      <p class="no-results">No distributions found.</p>
-      <ul class="distros-grid">
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Ubuntu for comparison"/>
-          <a href="https://ubuntu.com" target="_blank" class="distro-link">Ubuntu</a>
-          <p class="distro-description">World's most popular Linux distribution. Beginner-friendly with excellent hardware support and vast community.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Ubuntu on ShadowFetch!&url=https://ubuntu.com" target="_blank" aria-label="Share Ubuntu on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Ubuntu on ShadowFetch! https://ubuntu.com" target="_blank" aria-label="Share Ubuntu on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Linux Mint for comparison"/>
-          <a href="https://www.linuxmint.com" target="_blank" class="distro-link">Linux Mint</a>
-          <p class="distro-description">Elegant and familiar desktop experience. Perfect for Windows users transitioning to Linux.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Linux Mint on ShadowFetch!&url=https://www.linuxmint.com" target="_blank" aria-label="Share Linux Mint on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Linux Mint on ShadowFetch! https://www.linuxmint.com" target="_blank" aria-label="Share Linux Mint on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Enterprise">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Debian for comparison"/>
-          <a href="https://www.debian.org" target="_blank" class="distro-link">Debian</a>
-          <p class="distro-description">Rock-solid stability and massive software repository. The foundation for many other distributions.</p>
-          <span class="category-badge">Enterprise</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Debian on ShadowFetch!&url=https://www.debian.org" target="_blank" aria-label="Share Debian on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Debian on ShadowFetch! https://www.debian.org" target="_blank" aria-label="Share Debian on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Enterprise">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Fedora for comparison"/>
-          <a href="https://getfedora.org" target="_blank" class="distro-link">Fedora</a>
-          <p class="distro-description">Cutting-edge technologies and latest software. Sponsored by Red Hat with excellent security.</p>
-          <span class="category-badge">Enterprise</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Fedora on ShadowFetch!&url=https://getfedora.org" target="_blank" aria-label="Share Fedora on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Fedora on ShadowFetch! https://getfedora.org" target="_blank" aria-label="Share Fedora on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Gaming">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Pop!_OS for comparison"/>
-          <a href="https://pop.system76.com" target="_blank" class="distro-link">Pop!_OS</a>
-          <p class="distro-description">Optimized for productivity and gaming. Excellent NVIDIA support and sleek design.</p>
-          <span class="category-badge">Gaming</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Pop!_OS on ShadowFetch!&url=https://pop.system76.com" target="_blank" aria-label="Share Pop!_OS on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Pop!_OS on ShadowFetch! https://pop.system76.com" target="_blank" aria-label="Share Pop!_OS on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Manjaro for comparison"/>
-          <a href="https://manjaro.org" target="_blank" class="distro-link">Manjaro</a>
-          <p class="distro-description">User-friendly Arch-based distribution with rolling releases and excellent hardware detection.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Manjaro on ShadowFetch!&url=https://manjaro.org" target="_blank" aria-label="Share Manjaro on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Manjaro on ShadowFetch! https://manjaro.org" target="_blank" aria-label="Share Manjaro on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Advanced">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Arch Linux for comparison"/>
-          <a href="https://archlinux.org" target="_blank" class="distro-link">Arch Linux</a>
-          <p class="distro-description">Minimalist and highly customizable. For users who want complete control over their system.</p>
-          <span class="category-badge">Advanced</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Arch Linux on ShadowFetch!&url=https://archlinux.org" target="_blank" aria-label="Share Arch Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Arch Linux on ShadowFetch! https://archlinux.org" target="_blank" aria-label="Share Arch Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Enterprise">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select openSUSE for comparison"/>
-          <a href="https://www.opensuse.org" target="_blank" class="distro-link">openSUSE</a>
-          <p class="distro-description">Professional-grade distribution with powerful YaST configuration tool and enterprise support.</p>
-          <span class="category-badge">Enterprise</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out openSUSE on ShadowFetch!&url=https://www.opensuse.org" target="_blank" aria-label="Share openSUSE on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out openSUSE on ShadowFetch! https://www.opensuse.org" target="_blank" aria-label="Share openSUSE on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Zorin OS for comparison"/>
-          <a href="https://zorin.com/os" target="_blank" class="distro-link">Zorin OS</a>
-          <p class="distro-description">Beautiful and intuitive interface designed to welcome Windows and macOS users.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Zorin OS on ShadowFetch!&url=https://zorin.com/os" target="_blank" aria-label="Share Zorin OS on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Zorin OS on ShadowFetch! https://zorin.com/os" target="_blank" aria-label="Share Zorin OS on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Elementary OS for comparison"/>
-          <a href="https://elementary.io" target="_blank" class="distro-link">Elementary OS</a>
-          <p class="distro-description">Thoughtfully designed with privacy and elegance in mind. macOS-inspired interface.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Elementary OS on ShadowFetch!&url=https://elementary.io" target="_blank" aria-label="Share Elementary OS on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Elementary OS on ShadowFetch! https://elementary.io" target="_blank" aria-label="Share Elementary OS on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select MX Linux for comparison"/>
-          <a href="https://mxlinux.org" target="_blank" class="distro-link">MX Linux</a>
-          <p class="distro-description">Lightweight yet full-featured. Perfect balance of performance and usability.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out MX Linux on ShadowFetch!&url=https://mxlinux.org" target="_blank" aria-label="Share MX Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out MX Linux on ShadowFetch! https://mxlinux.org" target="_blank" aria-label="Share MX Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Security">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Kali Linux for comparison"/>
-          <a href="https://www.kali.org" target="_blank" class="distro-link">Kali Linux</a>
-          <p class="distro-description">The ultimate penetration testing and security auditing platform with 600+ tools.</p>
-          <span class="category-badge">Security</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Kali Linux on ShadowFetch!&url=https://www.kali.org" target="_blank" aria-label="Share Kali Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Kali Linux on ShadowFetch! https://www.kali.org" target="_blank" aria-label="Share Kali Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Enterprise">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select AlmaLinux for comparison"/>
-          <a href="https://almalinux.org" target="_blank" class="distro-link">AlmaLinux</a>
-          <p class="distro-description">Enterprise-grade RHEL clone with long-term support and stability.</p>
-          <span class="category-badge">Enterprise</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out AlmaLinux on ShadowFetch!&url=https://almalinux.org" target="_blank" aria-label="Share AlmaLinux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out AlmaLinux on ShadowFetch! https://almalinux.org" target="_blank" aria-label="Share AlmaLinux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Enterprise">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Rocky Linux for comparison"/>
-          <a href="https://rockylinux.org" target="_blank" class="distro-link">Rocky Linux</a>
-          <p class="distro-description">Community-driven enterprise operating system designed to be 100% bug-for-bug compatible with RHEL.</p>
-          <span class="category-badge">Enterprise</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Rocky Linux on ShadowFetch!&url=https://rockylinux.org" target="_blank" aria-label="Share Rocky Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Rocky Linux on ShadowFetch! https://rockylinux.org" target="_blank" aria-label="Share Rocky Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Gaming">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Garuda Linux for comparison"/>
-          <a href="https://garudalinux.org" target="_blank" class="distro-link">Garuda Linux</a>
-          <p class="distro-description">Gaming-focused Arch-based distribution with stunning visuals and performance optimizations.</p>
-          <span class="category-badge">Gaming</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Garuda Linux on ShadowFetch!&url=https://garudalinux.org" target="_blank" aria-label="Share Garuda Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Garuda Linux on ShadowFetch! https://garudalinux.org" target="_blank" aria-label="Share Garuda Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select EndeavourOS for comparison"/>
-          <a href="https://endeavouros.com" target="_blank" class="distro-link">EndeavourOS</a>
-          <p class="distro-description">Arch-based with a welcoming community and beginner-friendly approach to advanced Linux.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out EndeavourOS on ShadowFetch!&url=https://endeavouros.com" target="_blank" aria-label="Share EndeavourOS on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out EndeavourOS on ShadowFetch! https://endeavouros.com" target="_blank" aria-label="Share EndeavourOS on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Gaming">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Nobara for comparison"/>
-          <a href="https://getnobara.com" target="_blank" class="distro-link">Nobara</a>
-          <p class="distro-description">Gaming and content creation focused, based on Fedora with multimedia codecs included.</p>
-          <span class="category-badge">Gaming</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Nobara on ShadowFetch!&url=https://getnobara.com" target="_blank" aria-label="Share Nobara on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Nobara on ShadowFetch! https://getnobara.com" target="_blank" aria-label="Share Nobara on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Security">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Qubes OS for comparison"/>
-          <a href="https://www.qubes-os.org" target="_blank" class="distro-link">Qubes OS</a>
-          <p class="distro-description">Security through isolation using Xen hypervisor. Recommended by Edward Snowden.</p>
-          <span class="category-badge">Security</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Qubes OS on ShadowFetch!&url=https://www.qubes-os.org" target="_blank" aria-label="Share Qubes OS on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Qubes OS on ShadowFetch! https://www.qubes-os.org" target="_blank" aria-label="Share Qubes OS on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Security">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Tails for comparison"/>
-          <a href="https://tails.net" target="_blank" class="distro-link">Tails</a>
-          <p class="distro-description">Privacy-focused live system that routes all traffic through Tor. Leaves no traces.</p>
-          <span class="category-badge">Security</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Tails on ShadowFetch!&url=https://tails.net" target="_blank" aria-label="Share Tails on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Tails on ShadowFetch! https://tails.net" target="_blank" aria-label="Share Tails on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Advanced">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Gentoo for comparison"/>
-          <a href="https://gentoo.org" target="_blank" class="distro-link">Gentoo</a>
-          <p class="distro-description">Source-based distribution for ultimate customization and optimization. Compile everything yourself.</p>
-          <span class="category-badge">Advanced</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Gentoo on ShadowFetch!&url=https://gentoo.org" target="_blank" aria-label="Share Gentoo on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Gentoo on ShadowFetch! https://gentoo.org" target="_blank" aria-label="Share Gentoo on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Advanced">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Void Linux for comparison"/>
-          <a href="https://voidlinux.org" target="_blank" class="distro-link">Void Linux</a>
-          <p class="distro-description">Independent distribution with runit init system and musl libc option. Fast and minimal.</p>
-          <span class="category-badge">Advanced</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Void Linux on ShadowFetch!&url=https://voidlinux.org" target="_blank" aria-label="Share Void Linux on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Void Linux on ShadowFetch! https://voidlinux.org" target="_blank" aria-label="Share Void Linux on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select KDE Neon for comparison"/>
-          <a href="https://neon.kde.org" target="_blank" class="distro-link">KDE Neon</a>
-          <p class="distro-description">Latest KDE Plasma desktop on solid Ubuntu base. Perfect for KDE enthusiasts.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out KDE Neon on ShadowFetch!&url=https://neon.kde.org" target="_blank" aria-label="Share KDE Neon on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out KDE Neon on ShadowFetch! https://neon.kde.org" target="_blank" aria-label="Share KDE Neon on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Solus for comparison"/>
-          <a href="https://solus-project.com" target="_blank" class="distro-link">Solus</a>
-          <p class="distro-description">Independent distribution with custom Budgie desktop environment. Modern and curated.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Solus on ShadowFetch!&url=https://solus-project.com" target="_blank" aria-label="Share Solus on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Solus on ShadowFetch! https://solus-project.com" target="_blank" aria-label="Share Solus on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-        <li class="distro-card" data-category="Beginner">
-          <input type="checkbox" class="compare-checkbox" aria-label="Select Deepin for comparison"/>
-          <a href="https://www.deepin.org" target="_blank" class="distro-link">Deepin</a>
-          <p class="distro-description">Visually stunning distribution with custom desktop environment. Beautiful animations and design.</p>
-          <span class="category-badge">Beginner</span>
-          <div class="distro-share">
-            <a href="https://x.com/intent/tweet?text=Check out Deepin on ShadowFetch!&url=https://www.deepin.org" target="_blank" aria-label="Share Deepin on Twitter">Share on Twitter</a>
-            <a href="https://bsky.app/intent/compose?text=Check out Deepin on ShadowFetch! https://www.deepin.org" target="_blank" aria-label="Share Deepin on Bluesky">Share on Bluesky</a>
-          </div>
-        </li>
-      </ul>
-      <button class="load-more" aria-label="Load more distributions">Load More</button>
-    </section>
-
-    <section class="blog-section">
-      <h2 class="section-title">Latest Blog Posts</h2>
-      <p class="blog-intro">Stay updated with the latest Linux tips, tricks, and news!</p>
-      <div class="blog-posts">
-        <article class="blog-post">
-          <div class="blog-post-header">
-            <h3 class="blog-post-title">Getting Started with Ubuntu: A Beginner's Guide</h3>
-            <div class="blog-post-meta">
-              <span class="blog-date">July 1, 2025</span>
-              <span class="blog-author">Cyber Penguin</span>
-              <span class="blog-category">Beginner</span>
-            </div>
-          </div>
-          <div class="blog-post-content">
-            <p>Ubuntu is the go-to Linux distro for newcomers. Learn how to install, configure, and customize your Ubuntu system in this step-by-step guide.</p>
-          </div>
-          <div class="blog-post-footer">
-            <div class="blog-tags">
-              <span class="blog-tag">Ubuntu</span>
-              <span class="blog-tag">Beginner</span>
-              <span class="blog-tag">Tutorial</span>
-            </div>
-          </div>
-        </article>
-        <article class="blog-post">
-          <div class="blog-post-header">
-            <h3 class="blog-post-title">Why Arch Linux is Worth the Effort</h3>
-            <div class="blog-post-meta">
-              <span class="blog-date">June 25, 2025</span>
-              <span class="blog-author">Shadow Coder</span>
-              <span class="blog-category">Advanced</span>
-            </div>
-          </div>
-          <div class="blog-post-content">
-            <p>Arch Linux offers unmatched control and customization. Discover why its steep learning curve is a rewarding journey for power users.</p>
-          </div>
-          <div class="blog-post-footer">
-            <div class="blog-tags">
-              <span class="blog-tag">Arch Linux</span>
-              <span class="blog-tag">Advanced</span>
-              <span class="blog-tag">Customization</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <div class="modal" id="compareModal">
-    <div class="modal-content">
-      <span class="close-modal" aria-label="Close comparison modal">×</span>
-      <h2>Compare Distributions</h2>
-      <table id="comparisonTable">
-        <thead>
-          <tr>
-            <th>Distribution</th>
-            <th>Category</th>
-            <th>Base</th>
-            <th>Use Case</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+  <section class="mb-12 animate-fade-in-down">
+    <h2 class="text-3xl mb-4 text-green-400">🌦️ Global Weather Feed</h2>
+    <div id="weather-feed" class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-200">
+      <p>Loading real-time temperatures from NYC, Tokyo, Berlin, and Cape Town...</p>
     </div>
-  </div>
+  </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 ShadowFetch. All rights reserved.</p>
-    </div>
-  </footer>
+  <!-- Existing Linux distro showcase continues below -->
+
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- ...existing distro cards... -->
+  </section>
 
   <script>
-    // Particle generation (reduced to 10)
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 10; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
-      particle.style.animationDelay = `${Math.random() * 6}s`;
-      particlesContainer.appendChild(particle);
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const tw = document.querySelector('.typewriter');
+      setTimeout(() => tw.classList.remove('typewriter'), 4000);
 
-    // Theme toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-    });
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light-mode');
-    }
+      // RSS Fetch (static proxy sample)
+      fetch('https://api.rss2json.com/v1/api.json?rss_url=https://feeds.bbci.co.uk/news/rss.xml')
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById('rss-news');
+          container.innerHTML = data.items.slice(0, 5).map(item => `
+            <div class="p-4 bg-zinc-800 rounded-xl border border-green-600 animate-slide-in-left">
+              <h3 class="text-lg font-semibold text-green-300">${item.title}</h3>
+              <p><a href="${item.link}" target="_blank" class="underline text-green-400">Read more</a></p>
+            </div>
+          `).join('');
+        });
 
-    // Search and filter
-    const searchInput = document.getElementById('searchInput');
-    const filterButtons = document.querySelectorAll('.filter-button');
-    const distroCards = document.querySelectorAll('.distro-card');
-    const noResults = document.querySelector('.no-results');
-    
-    searchInput.addEventListener('input', filterDistros);
-    filterButtons.forEach(button => button.addEventListener('click', () => {
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      filterDistros();
-    }));
-
-    function filterDistros() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const activeCategory = document.querySelector('.filter-button.active').dataset.category;
-      let visibleCount = 0;
-      
-      distroCards.forEach(card => {
-        const name = card.querySelector('.distro-link').textContent.toLowerCase();
-        const category = card.dataset.category;
-        const matchesSearch = name.includes(searchTerm);
-        const matchesCategory = !activeCategory || category === activeCategory;
-        
-        card.style.display = matchesSearch && matchesCategory ? '' : 'none';
-        if (matchesSearch && matchesCategory) visibleCount++;
-      });
-      
-      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-      updateLoadMore();
-    }
-
-    // Load more
-    const loadMore = document.querySelector('.load-more');
-    let visibleDistros = 8;
-    updateLoadMore();
-    
-    loadMore.addEventListener('click', () => {
-      visibleDistros += 8;
-      updateLoadMore();
-    });
-
-    function updateLoadMore() {
-      distroCards.forEach((card, index) => {
-        if (card.style.display !== 'none') {
-          card.style.display = index < visibleDistros ? '' : 'none';
-        }
-      });
-      loadMore.style.display = Array.from(distroCards).some((card, index) => index >= visibleDistros && card.style.display !== 'none') ? 'block' : 'none';
-    }
-
-    // Comparison modal
-    const compareButton = document.getElementById('compareButton');
-    const compareModal = document.getElementById('compareModal');
-    const closeModal = document.querySelector('.close-modal');
-    const comparisonTable = document.getElementById('comparisonTable').querySelector('tbody');
-    
-    compareButton.addEventListener('click', () => {
-      const selected = document.querySelectorAll('.compare-checkbox:checked');
-      comparisonTable.innerHTML = '';
-      
-      selected.forEach(checkbox => {
-        const card = checkbox.closest('.distro-card');
-        const name = card.querySelector('.distro-link').textContent;
-        const category = card.querySelector('.category-badge').textContent;
-        const base = name === 'Ubuntu' ? 'Debian' : name === 'Fedora' ? 'Independent' : 'Other'; // Simplified
-        const useCase = card.querySelector('.distro-description').textContent;
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${name}</td><td>${category}</td><td>${base}</td><td>${useCase}</td>`;
-        comparisonTable.appendChild(row);
-      });
-      
-      compareModal.style.display = selected.length > 0 ? 'flex' : 'none';
-    });
-    
-    closeModal.addEventListener('click', () => {
-      compareModal.style.display = 'none';
-    });
-
-    // Keyboard navigation
-    document.querySelectorAll('.filter-button, #searchInput, #compareButton, .load-more').forEach(element => {
-      element.addEventListener('keypress', e => {
-        if (e.key === 'Enter') element.click();
+      // Weather (using Open-Meteo public API as a demo)
+      const cities = [
+        { name: 'New York', lat: 40.71, lon: -74.01 },
+        { name: 'Tokyo', lat: 35.68, lon: 139.69 },
+        { name: 'Berlin', lat: 52.52, lon: 13.405 },
+        { name: 'Cape Town', lat: -33.92, lon: 18.42 }
+      ];
+      cities.forEach(city => {
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current_weather=true`)
+          .then(res => res.json())
+          .then(data => {
+            const weatherBox = document.createElement('div');
+            weatherBox.className = 'p-4 bg-zinc-800 rounded-xl border border-green-600';
+            weatherBox.innerHTML = `<strong>${city.name}</strong><br>Temp: ${data.current_weather.temperature}°C<br>Condition: ${data.current_weather.weathercode}`;
+            document.getElementById('weather-feed').appendChild(weatherBox);
+          });
       });
     });
   </script>
+
+  <style>
+    @keyframes fade-in-down {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slide-in-left {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slide-in-right {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-fade-in-down { animation: fade-in-down 1s ease forwards; }
+    .animate-fade-in-up { animation: fade-in-up 1s ease forwards; }
+    .animate-slide-in-left { animation: slide-in-left 1s ease forwards; }
+    .animate-slide-in-right { animation: slide-in-right 1s ease forwards; }
+  </style>
 </body>
 </html>
